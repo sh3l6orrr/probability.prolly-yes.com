@@ -1,7 +1,10 @@
 export default function Layout({ children }) {
-  return (
-    <main className='max-w-screen-md w-screen'>
-      {children}
-    </main>
-  )
+  return <>
+    <div className='max-w-screen-md w-screen flex justify-center'>
+      <main className='w-11/12'>
+        {children}
+      </main>
+    </div>
+  </>
+
 }

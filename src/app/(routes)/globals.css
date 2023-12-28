@@ -11,6 +11,10 @@ h2 {
 h3 {
   @apply text-xl
 }
+
+button {
+  @apply border p-0.5 px-2 rounded hover:bg-slate-300
+}
 input {
   @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border
 }
