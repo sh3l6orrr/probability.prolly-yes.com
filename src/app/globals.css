@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
-  font-family: system-ui;
+input {
+  @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg;
 }
 
-@media (prefers-color-scheme: dark) {
-
+select {
+  @apply dark:bg-slate-900;
 }
