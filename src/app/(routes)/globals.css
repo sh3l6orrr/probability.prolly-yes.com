@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply border-black dark:border-white dark:text-white
+}
+h2 {
+  @apply text-2xl
+}
+h3 {
+  @apply text-xl
+}
+input {
+  @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border
+}
+
+select {
+  @apply dark:bg-slate-900;
+}

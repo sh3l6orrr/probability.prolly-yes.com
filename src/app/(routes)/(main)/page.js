@@ -6,7 +6,5 @@ export const metadata = {
 import Stage from "./Stage"
 
 export default function Home() {
-  return (
-    <Stage />
-  )
+  return <Stage />
 }
