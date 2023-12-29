@@ -13,7 +13,7 @@ h3 {
 }
 
 button {
-  @apply border p-0.5 px-2 rounded hover:bg-slate-300
+  @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black
 }
 input {
   @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border

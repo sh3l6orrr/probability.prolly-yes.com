@@ -2,30 +2,31 @@ import { distrParams, distrParamsNames } from "./util"
 import { useProbabilityStore } from "./store"
 
 export default function Settings() {
-  const { distr, params, setDistr, setParams, setRerender, rerender} = useProbabilityStore()
+  const { distr, params, setDistr, setParams, setRerender, rerender } = useProbabilityStore()
 
-  return <>
-    <h2>Probability Distribution</h2>
-    <div className="
-      bg-neutral-100 dark:bg-black
-      w-full rounded-2xl p-6
-    ">
-      <select value={distr} onChange={e => {
-        setParams(distrParams[e.target.value])
-        setDistr(e.target.value)
-        setRerender(!rerender)
-      }}>
-        <option value="norm">Normal</option>
-        <option value="t">Student&apos;s t</option>
-        <option value="f">F</option>
-        <option value="chi2">Chi-squared</option>
-      </select>
+  return <div>
+    <h2>Specify Probability Distribution</h2>
+    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
+      <div className="flex gap-3">
+        {
+          distributions.map(item => <button key={item.name}
+            className={distr === item.label ? 'bg-blue-200 dark:text-black' : ''}
+            onClick={() => {
+              setParams(distrParams[item.label])
+              setDistr(item.label)
+              setRerender(!rerender)
+            }}>
+            {item.name}
+          </button>)
+        }
+      </div>
+
       <div className="h-3" />
       <form onSubmit={e => {
         e.preventDefault()
         setRerender(!rerender)
       }}>
-        <div className="flex gap-3 w-full items-center">
+        <div className="flex gap-3 items-center">
           {Object.keys(params).map(key => (
             <div key={key} className='flex gap-3 items-center'>
               <i>{distrParamsNames[distr][key]}</i>
@@ -38,10 +39,27 @@ export default function Settings() {
           <div>
             <button type='submit'>Press enter to render</button>
           </div>
-
         </div>
-
       </form>
     </div>
-  </>
+  </div>
 }
+
+const distributions = [
+  {
+    name: 'Normal',
+    label: 'norm',
+  },
+  {
+    name: "Student's t",
+    label: 't',
+  },
+  {
+    name: "Chi-squared",
+    label: 'chi2',
+  },
+  {
+    name: "F",
+    label: 'f',
+  }
+]

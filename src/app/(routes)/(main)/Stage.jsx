@@ -2,17 +2,49 @@
 
 import Script from "next/script"
 import Settings from "./Settings"
-import Plot from "./Plot"
+import PdfPlot from "./PdfPlot"
+import CdfPlot from "./CdfPlot"
 import Moments from "./Moments"
+import Selector from "./Selector"
+
+import { useProbabilityStore } from "./store"
+import { useEffect } from "react"
+import { showCdf, showPdf, getMoments } from "./actions"
 
 export default function Stage() {
+  const { showPlot, distr, params, rerender, setMoments } = useProbabilityStore()
 
+  useEffect(() => {
+    let formData = new FormData();
+    for (const key in params) formData.append(key, params[key])
+    formData.append('distr', distr)
+
+    async function update() {
+
+      if (showPlot.includes('pdf')) {
+        const pdf = await showPdf(formData)
+        if (pdf) await vegaEmbed('#pdf', pdf)
+      }
+      if (showPlot.includes('cdf')) {
+        const cdf = await showCdf(formData)
+        if (cdf) await vegaEmbed('#cdf', cdf)
+      }
+      if (showPlot.includes('moments')) {
+        const moments = await getMoments(formData)
+        if (moments) setMoments(moments)
+      }
+    }
+    update()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rerender])
   return <>
-    <Settings />
-    <div className="h-5" />
-    <Moments />
-    <div className="h-5" />
-    <Plot />
+    <div className="flex flex-col gap-3">
+      <Settings />
+      <Selector />
+      {showPlot.includes('moments') && <Moments />}
+      {showPlot.includes('pdf') && <PdfPlot />}
+      {showPlot.includes('cdf') && <CdfPlot />}
+    </div>
     <Script src="https://cdn.jsdelivr.net/npm/vega@5"></Script>
     <Script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></Script>
     <Script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></Script>

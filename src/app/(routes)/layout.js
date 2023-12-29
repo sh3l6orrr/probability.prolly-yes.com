@@ -3,7 +3,7 @@ import './globals.css'
 export default function Layout({ children }) {
   return (
     <div className='
-    min-h-screen grid place-content-center
+    min-h-screen flex justify-center
     dark:bg-neutral-900'>
       {children}
     </div>

@@ -1,27 +1,14 @@
 'use client'
 
 import { useProbabilityStore } from "./store"
-import { useEffect } from "react"
-import { getMoments } from "./actions"
 
 export default function Moments() {
-  const { moments, setMoments, rerender, params, distr} = useProbabilityStore()
-  useEffect(() => {
-    let formData = new FormData();
-    for (const key in params) formData.append(key, params[key])
-    formData.append('distr', distr)
+  const { moments } = useProbabilityStore()
 
-    async function update() {
-      const moments = await getMoments(formData)
-      if (moments) setMoments(moments)
-    }
-    update()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rerender])
-  return <>
+  return <div>
     <h2>Moments</h2>
     <div className="
-     bg-neutral-100 dark:bg-black
+     bg-neutral-100 dark:bg-black shadow-lg
       w-full rounded-2xl p-6">
       <div className="flex justify-between">
         <div>
@@ -42,7 +29,5 @@ export default function Moments() {
         </div>
       </div>
     </div>
-
-
-  </>
+  </div>
 }

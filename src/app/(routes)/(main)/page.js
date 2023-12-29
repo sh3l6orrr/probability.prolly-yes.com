@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "ProllyYes",
-  description: "Best online tools for probability and statistics",
+  title: "ProllyYes - Probability and Statistics Visualized",
+  description: "Best online tools for probability and statistics.",
 }
 
 import Stage from "./Stage"
