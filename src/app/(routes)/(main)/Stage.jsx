@@ -45,14 +45,15 @@ export default function Stage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [distr, params, showPlot])
   return <div>
-    <aside className="fixed w-96 h-screen bg-white dark:bg-black border-r flex flex-col">
+    <aside className="bg-white dark:bg-black flex flex-col
+    w-screen md:fixed md:w-96 md:h-screen md:border-r">
       <Panel />
       <Distribution />
       <Parameters />
       <Selector />
     </aside>
     
-    <div className="ml-96 p-8 flex flex-col gap-3">
+    <div className="p-8 flex flex-col gap-3 md:ml-96 ">
       {showPlot.includes('moments') && <div style={{order: showPlot.indexOf('moments') + 1}}> <Moments /></div>}
 
       {showPlot.includes('pdf') && <div style={{order: showPlot.indexOf('pdf') + 1}}><PdfPlot /></div>}
