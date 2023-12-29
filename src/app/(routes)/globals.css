@@ -5,6 +5,9 @@
 * {
   @apply border-black dark:border-white dark:text-white
 }
+a {
+  @apply hover:underline
+}
 h2 {
   @apply text-2xl
 }

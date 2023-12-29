@@ -1,31 +1,23 @@
 import { useProbabilityStore } from "./store"
 
 export default function Parameters() {
-  const { distr, params, setParams, setRerender, rerender } = useProbabilityStore()
+  const { distr, params, setParams } = useProbabilityStore()
 
-  return <div>
-    <h2>Configure Parameters</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
-      <form onSubmit={e => {
-        e.preventDefault()
-        setRerender(!rerender)
-      }}>
-        <div className="flex gap-3 items-center">
-          {Object.keys(params).map(key => (
-            <div key={key} className='flex gap-3 items-center'>
-              <i>{distrParamsNames[distr][key]}</i>
-              <input className="w-16" name={key} value={params[key]} onChange={e => {
-                setParams({ ...params, [key]: e.target.value })
-              }} required />
-            </div>
-          ))}
-          <div className="grow" />
-          <div>
-            <button type='submit'>Press enter to render</button>
+  return <div className="border-b p-8">
+    <h3>Parameters</h3>
+    <div className="h-3"></div>
+    <form>
+      <div className="flex flex-wrap gap-3 items-center">
+        {Object.keys(params).map(key => (
+          <div key={key} className='flex gap-3 items-center'>
+            <i>{distrParamsNames[distr][key]}</i>
+            <input className="w-16" maxLength="6" placeholder={key}  name={key} value={params[key]} onChange={e => {
+              setParams({ ...params, [key]: e.target.value })
+            }} required />
           </div>
-        </div>
-      </form>
-    </div>
+        ))}
+      </div>
+    </form>
   </div>
 }
 

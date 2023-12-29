@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "ProllyYes - Probability and Statistics Visualized",
+  title: "ProllyYes: Probability and Statistics Visualized",
   description: "Best online tools for probability and statistics.",
 }
 

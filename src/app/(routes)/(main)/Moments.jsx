@@ -7,9 +7,7 @@ export default function Moments() {
 
   return <div>
     <h2>Moments</h2>
-    <div className="
-     bg-neutral-100 dark:bg-black shadow-lg
-      w-full rounded-2xl p-6">
+    <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">
       <div className="grid grid-cols-4 justify-items-center text-center">
         <div>
           <i>Mean</i>

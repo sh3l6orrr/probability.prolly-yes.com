@@ -3,31 +3,31 @@ import { useProbabilityStore } from "./store"
 export default function Distribution() {
   const { distr, setDistr, setParams, setRerender, rerender, toggleShowPlotPmfAndPdf, setType } = useProbabilityStore()
 
-  return <div>
-    <h2>Select Probability Distribution</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
-      <div className="flex gap-3">
-        {
-          distributions.map(item => <button key={item.name}
-            className={distr === item.label ? 'bg-blue-200 dark:text-black' : ''}
-            onClick={() => {
-              setParams(distrDefaultParams[item.label])
-              setDistr(item.label)
-              if (discreteDistributions.includes(item.label)) {
-                setType('discrete')
-                toggleShowPlotPmfAndPdf('pmf')
-              } else {
-                setType('continuous')
-                toggleShowPlotPmfAndPdf('pdf')
-              }
-              setRerender(!rerender)
-            }}>
-            {item.name}
-          </button>)
-        }
-      </div>
-
+  return <div className="border-b p-8">
+    <h3>Probability Distribution</h3>
+    <div className="h-3"></div>
+    <div className="flex flex-wrap gap-3">
+      {
+        distributions.map(item => <button key={item.name}
+          className={distr === item.label ? 'bg-blue-200 dark:text-black' : ''}
+          onClick={() => {
+            setParams(distrDefaultParams[item.label])
+            setDistr(item.label)
+            if (discreteDistributions.includes(item.label)) {
+              setType('discrete')
+              toggleShowPlotPmfAndPdf('pmf')
+            } else {
+              setType('continuous')
+              toggleShowPlotPmfAndPdf('pdf')
+            }
+            setRerender(!rerender)
+          }}>
+          {item.name}
+        </button>)
+      }
     </div>
+
+
   </div>
 }
 
