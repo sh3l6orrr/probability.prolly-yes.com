@@ -10,22 +10,22 @@ export default function Moments() {
     <div className="
      bg-neutral-100 dark:bg-black shadow-lg
       w-full rounded-2xl p-6">
-      <div className="flex justify-between">
+      <div className="grid grid-cols-4 justify-items-center text-center">
         <div>
-          Mean
-          <h3>{moments.mean}</h3>
+          <i>Mean</i>
+          <h2>{moments.mean}</h2>
         </div>
         <div>
-          Variance
-          <h3>{moments.variance}</h3>
+          <i>Variance</i>
+          <h2>{moments.variance}</h2>
         </div>
         <div>
-          Skewness
-          <h3>{moments.skewness}</h3>
+          <i>Skewness</i>
+          <h2>{moments.skewness}</h2>
         </div>
         <div>
-          Kurtosis
-          <h3>{moments.kurtosis}</h3>
+          <i>Kurtosis</i>
+          <h2>{moments.kurtosis}</h2>
         </div>
       </div>
     </div>

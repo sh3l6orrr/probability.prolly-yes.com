@@ -1,20 +1,24 @@
 'use client'
 
 import Script from "next/script"
-import Settings from "./Settings"
 import PdfPlot from "./PdfPlot"
 import CdfPlot from "./CdfPlot"
 import Moments from "./Moments"
 import Selector from "./Selector"
+import Parameters from "./Parameters"
+import Distribution from "./Distribution"
+import PmfPlot from "./PmfPlot"
 
 import { useProbabilityStore } from "./store"
 import { useEffect } from "react"
-import { showCdf, showPdf, getMoments } from "./actions"
+import { showCdf, showPdf, getMoments, showPmf } from "./actions"
+
 
 export default function Stage() {
   const { showPlot, distr, params, rerender, setMoments } = useProbabilityStore()
 
   useEffect(() => {
+
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
     formData.append('distr', distr)
@@ -24,6 +28,10 @@ export default function Stage() {
       if (showPlot.includes('pdf')) {
         const pdf = await showPdf(formData)
         if (pdf) await vegaEmbed('#pdf', pdf)
+      }
+      if (showPlot.includes('pmf')) {
+        const pmf = await showPmf(formData)
+        if (pmf) await vegaEmbed('#pmf', pmf)
       }
       if (showPlot.includes('cdf')) {
         const cdf = await showCdf(formData)
@@ -39,10 +47,12 @@ export default function Stage() {
   }, [rerender])
   return <>
     <div className="flex flex-col gap-3">
-      <Settings />
+      <Distribution />
+      <Parameters />
       <Selector />
       {showPlot.includes('moments') && <Moments />}
       {showPlot.includes('pdf') && <PdfPlot />}
+      {showPlot.includes('pmf') && <PmfPlot />}
       {showPlot.includes('cdf') && <CdfPlot />}
     </div>
     <Script src="https://cdn.jsdelivr.net/npm/vega@5"></Script>

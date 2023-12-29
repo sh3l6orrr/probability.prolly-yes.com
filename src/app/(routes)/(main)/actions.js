@@ -16,6 +16,20 @@ export async function showPdf(formData) {
   return pdf
 }
 
+export async function showPmf(formData) {
+  const res = await fetch(url + '/probability/pmf', {
+    method: 'POST',
+    body: formData
+  })
+  let pmf
+  try {
+    pmf = await res.json()
+  } catch (error) {
+    return null
+  }
+  return pmf
+}
+
 export async function showCdf(formData) {
   const res = await fetch(url + '/probability/cdf', {
     method: 'POST',
