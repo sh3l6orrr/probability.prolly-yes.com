@@ -6,7 +6,10 @@
   @apply border-black dark:border-white dark:text-white
 }
 a {
-  @apply hover:underline
+  @apply hover:underline cursor-pointer
+}
+h1 {
+  @apply text-3xl
 }
 h2 {
   @apply text-2xl

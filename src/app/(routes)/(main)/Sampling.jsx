@@ -15,7 +15,7 @@ export default function Sampling() {
       const sampling = await getSampling(newformData)
       if (sampling) {
         await vegaEmbed('#sampling', sampling.hist)
-        document.getElementById('sample').textContent = sampling.sample
+        document.getElementById('sample').textContent = sampling.sample.join(', ')
       }
     }
     update()
@@ -23,15 +23,16 @@ export default function Sampling() {
   }, [nSample])
   return <div>
     <h2>Sampling From the Distribution</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg h-104 flex justify-between">
+    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg h-104 flex justify-between gap-3">
       <div id='sampling' />
-      <div className="flex flex-col max-w-72 gap-3">
-        <div>
-          #Samples: <input name='nSample' value={nSample} onChange={e => setNSample(e.target.value)} />
-        </div>
-        <div >
-          Samples generated: <p className='break-words max-h-28 overflow-auto' id='sample' />
-        </div>
+      <div className="flex flex-col gap-3">
+
+          #Samples: 
+          <input name='nSample' maxLength="6" value={nSample} onChange={e => setNSample(e.target.value)} />
+
+          Samples generated: 
+          <p className='overflow-y-scroll' id='sample' />
+
       </div>
     </div>
   </div>
