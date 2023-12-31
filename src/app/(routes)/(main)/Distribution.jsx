@@ -1,7 +1,7 @@
 import { useProbabilityStore } from "./store"
 
 export default function Distribution() {
-  const { distr, setDistr, setParams, setRerender, rerender, toggleShowPlotPmfAndPdf, setType } = useProbabilityStore()
+  const { distr, setDistr, setParams, toggleShowPlotPmfAndPdf, setType } = useProbabilityStore()
 
   return <div className="border-b p-8">
     <h3>Probability Distribution</h3>
@@ -20,7 +20,6 @@ export default function Distribution() {
               setType('continuous')
               toggleShowPlotPmfAndPdf('pdf')
             }
-            setRerender(!rerender)
           }}>
           {item.name}
         </button>)

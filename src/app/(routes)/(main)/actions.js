@@ -59,3 +59,18 @@ export async function getMoments(formData) {
   }
   return pdf
 }
+
+export async function getSampling(formData) {
+  const res = await fetch(url + '/probability/sampling', {
+    method: 'POST',
+    body: formData,
+    cache: 'no-store'
+  })
+  let sampling
+  try {
+    sampling = await res.json()
+  } catch (error) {
+    return null
+  }
+  return sampling
+}

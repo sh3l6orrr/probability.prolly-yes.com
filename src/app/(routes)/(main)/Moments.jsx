@@ -1,10 +1,21 @@
-'use client'
-
 import { useProbabilityStore } from "./store"
+import { useEffect } from "react"
+import { getMoments } from "./actions"
 
 export default function Moments() {
-  const { moments } = useProbabilityStore()
+  const { params, distr, setMoments, moments } = useProbabilityStore()
+  useEffect(() => {
+    let formData = new FormData();
+    for (const key in params) formData.append(key, params[key])
+    formData.append('distr', distr)
 
+    async function update() {
+      const moments = await getMoments(formData)
+      if (moments) setMoments(moments)
+    }
+    update()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params, distr])
   return <div>
     <h2>Moments</h2>
     <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">

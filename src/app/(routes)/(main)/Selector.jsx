@@ -1,7 +1,7 @@
 import { useProbabilityStore } from "./store"
 
 export default function Selector() {
-  const { setRerender, rerender, toggleShowPlot, showPlot, type } = useProbabilityStore()
+  const { toggleShowPlot, showPlot, type } = useProbabilityStore()
   const selections = type === 'discrete' ? selectionsDiscrete : selectionsContinuous
   return <div className="border-b p-8">
     <h3>Show Visualizations</h3>
@@ -11,7 +11,6 @@ export default function Selector() {
         {selections.map(item => <button key={item.name}
           className={showPlot.includes(item.label) ? 'bg-blue-200 dark:text-black' : ''} onClick={() => {
             toggleShowPlot(item.label)
-            setRerender(!rerender)
           }}>
           {item.name}
         </button>
@@ -33,6 +32,10 @@ const selectionsContinuous = [
   {
     name: 'CDF',
     label: 'cdf'
+  },
+  {
+    name: 'Sampling',
+    label: 'sampling'
   }
 ]
 
@@ -48,5 +51,9 @@ const selectionsDiscrete = [
   {
     name: 'CDF',
     label: 'cdf'
+  },
+  {
+    name: 'Sampling',
+    label: 'sampling'
   }
 ]
