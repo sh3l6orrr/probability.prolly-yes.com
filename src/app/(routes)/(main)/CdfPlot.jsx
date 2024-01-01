@@ -11,7 +11,7 @@ export default function CdfPlot() {
 
     async function update() {
       const cdf = await showCdf(formData)
-      if (cdf) await vegaEmbed('#cdf', cdf)
+      if (cdf) await vegaEmbed('#cdf', cdf, { height: 334 })
 
     }
     update()
@@ -19,7 +19,7 @@ export default function CdfPlot() {
 
   return <div>
     <h2>Cumulative Distribution Function (CDF)</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg h-104">
+    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
       <div id='cdf' />
     </div>
   </div>

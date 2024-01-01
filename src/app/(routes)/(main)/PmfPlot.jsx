@@ -11,7 +11,7 @@ export default function PmfPlot() {
 
     async function update() {
       const pmf = await showPmf(formData)
-      if (pmf) await vegaEmbed('#pmf', pmf)
+      if (pmf) await vegaEmbed('#pmf', pmf, { height: 334 })
 
     }
     update()
@@ -19,7 +19,7 @@ export default function PmfPlot() {
 
   return <div>
     <h2>Probability Mass Function (PMF)</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg h-104">
+    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
       <div id='pmf' />
     </div>
   </div>

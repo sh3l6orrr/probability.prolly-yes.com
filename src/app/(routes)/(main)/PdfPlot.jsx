@@ -11,7 +11,7 @@ export default function PdfPlot() {
 
     async function update() {
       const pdf = await showPdf(formData)
-      if (pdf) await vegaEmbed('#pdf', pdf)
+      if (pdf) await vegaEmbed('#pdf', pdf, { height: 334 })
 
     }
     update()
@@ -19,7 +19,7 @@ export default function PdfPlot() {
 
   return <div>
     <h2>Probability Density Function (PDF)</h2>
-    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg h-104">
+    <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg">
       <div id='pdf' />
     </div>
   </div>
