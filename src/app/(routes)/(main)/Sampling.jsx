@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store"
 import { getSampling } from "./actions"
 
 export default function Sampling() {
   const { nSample, setNSample, distr, params } = useProbabilityStore()
+  const [render, setRender] = useState(false)
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -20,18 +21,23 @@ export default function Sampling() {
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nSample, distr, params])
+  }, [render])
   return <div>
     <h2>Sampling From the Distribution</h2>
     <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg flex justify-between gap-3 flex-col md:flex-row">
       <div id='sampling' />
       <div className="flex flex-col gap-3 w-full max-h-96">
-
-          #Samples: 
+        <form className='flex gap-2' onSubmit={(e) => {
+          e.preventDefault()
+          setRender(!render)
+        }}>
+          #Samples:
           <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
+          <button type='submit'>Generate</button>
+        </form>
 
-          Samples generated: 
-          <p className='overflow-y-scroll h-full' id='sample' />
+        Samples generated:
+        <p className='overflow-y-scroll h-full' id='sample' />
 
       </div>
     </div>

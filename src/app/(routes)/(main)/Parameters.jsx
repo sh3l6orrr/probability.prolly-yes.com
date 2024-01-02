@@ -11,9 +11,10 @@ export default function Parameters() {
         {Object.keys(params).map(key => (
           <div key={key} className='flex gap-3 items-center justify-between'>
             {distrParamsNames[distr][key]} = {params[key]}
-            <input type='range' min={distrParamsRange[distr][key].min} max={distrParamsRange[distr][key].max} step={distrParamsRange[distr][key].step} className="w-48 dark:text-white" name={key} value={params[key]} onChange={e => {
-              setParams({ ...params, [key]: e.target.value })
-            }} required />
+            <input type='range' min={distrParamsRange[distr][key].min} max={distrParamsRange[distr][key].max} step={distrParamsRange[distr][key].step} className="w-48 
+            " name={key} value={params[key]} onChange={e => {
+                setParams({ ...params, [key]: e.target.value })
+              }} required />
           </div>
         ))}
       </div>
@@ -42,7 +43,7 @@ const distrParamsNames = {
   }
 }
 
-const distrParamsRange= {
+const distrParamsRange = {
   norm: {
     loc: {
       min: -5,
