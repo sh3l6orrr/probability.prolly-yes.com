@@ -6,7 +6,7 @@ export const useProbabilityStore = create((set) => ({
   params: { loc: 0, scale: 1 },
   moments: { mean: 0, variance: 1, skewness: 0, kurtosis: 0 },
   showPlot: ['moments', 'pdf'],
-  nSample: '20',
+  nSample: 50,
   setDistr: (newDistr) => set({ distr: newDistr }),
   setParams: (newParams) => set({ params: newParams }),
   setMoments: (newMoments) => set({ moments: newMoments }),
