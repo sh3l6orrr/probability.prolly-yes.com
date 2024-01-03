@@ -21,6 +21,10 @@ h3 {
 button {
   @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black
 }
+
+.button-secondary {
+  @apply text-sm border-0 text-gray-600 dark:text-gray-400 hover:bg-inherit hover:underline
+}
 input {
   @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border
 }

@@ -9,7 +9,7 @@ export default function Parameters() {
   return <div className="border-b p-8">
     <div className="flex justify-between">
       <h3>Parameters</h3>
-      <button onClick={() => setSpecifyParams(!specifyParams)}>{specifyParams ? "Use Slider" : 'Customize'}</button>
+      <button className='button-secondary' onClick={() => setSpecifyParams(!specifyParams)}>{specifyParams ? "Use Slider" : 'Customize'}</button>
     </div>
 
     <div className="h-3"></div>

@@ -29,20 +29,25 @@ export default function Sampling() {
     <div className="bg-neutral-100 dark:bg-black rounded-2xl p-6 shadow-lg flex justify-between gap-3 flex-col lg:flex-row">
       <div id='sampling' />
       <div className="flex flex-col gap-3 w-full max-h-96">
-        <div className='flex flex-wrap gap-2 items-center'>
-          # Samples:
+        <div className='flex flex-wrap gap-3 justify-between'>
           {!specifyN && <>
-            {defaultSampleSizes.map(item=><button key={item} className={nSample === item ? 'bg-blue-200 dark:text-black' : ''} onClick={() => {
-              setNSample(item)
-              setTriggerSample(!triggerSample)
-            }}>{item}</button>)}
-            <button onClick={() => setSpecifyN(true)}>Customize</button>
+            <div className='flex flex-wrap gap-2 items-center'>
+              Size:
+              {defaultSampleSizes.map(item => <button key={item} className={nSample === item ? 'bg-blue-200 dark:text-black' : ''} onClick={() => {
+                setNSample(item)
+                setTriggerSample(!triggerSample)
+              }}>{item}</button>)}
+            </div>
+            <button className='button-secondary' onClick={() => setSpecifyN(true)}>Customize</button>
 
           </>}
           {specifyN && <>
-            <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
-            <button onClick={() => setTriggerSample(!triggerSample)}>Generate</button>
-            <button onClick={() => setSpecifyN(false)}>Use Default Values</button>
+            <div className='flex flex-wrap gap-2 items-center'>
+              Size:
+              <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
+              <button onClick={() => setTriggerSample(!triggerSample)}>Generate</button>
+            </div>
+            <button className='button-secondary' onClick={() => setSpecifyN(false)}>Use Default Values</button>
           </>}
 
         </div>
