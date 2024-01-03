@@ -13,7 +13,7 @@ export default function Parameters() {
     </div>
 
     <div className="h-3"></div>
-    <div className="flex flex-col gap-3">
+    <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); toggleTrigger() }}>
       {Object.keys(params).map(key => (
         <div key={key} className='flex items-center justify-between'>
           {!specifyParams && <>
@@ -22,14 +22,14 @@ export default function Parameters() {
           </>}
           {specifyParams && <>
             {distrParamsNames[distr][key]}
-            <input className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: e.target.value })} />
+            <input className="w-48" name={key} value={params[key]} maxLength={6} onChange={e => setParams({ ...params, [key]: e.target.value })} required/>
 
           </>}
         </div>
       ))}
-      {specifyParams && <button className="rounded-xl mt-1.5" classonClick={() => toggleTrigger()}>Apply</button>}
+      {specifyParams && <button className="rounded-xl mt-1.5" type='submit'>Apply</button>}
 
-    </div>
+    </form>
 
 
   </div>
