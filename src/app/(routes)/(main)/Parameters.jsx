@@ -14,23 +14,26 @@ export default function Parameters() {
     </div>
 
     <div className="h-3"></div>
-    <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); setFailed(false); toggleTrigger() }}>
-      {Object.keys(params).map(key => (
-        <div key={key} className='flex items-center justify-between'>
-          {!specifyParams && <>
-            <InlineMath math={`${distrParamsNames[distr][key]} = ${params[key]}`} />
-            <input type='range' min={distrParamsRange[distr][key].min} max={distrParamsRange[distr][key].max} step={distrParamsRange[distr][key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: e.target.value })} onMouseUp={() => {toggleTrigger(); setFailed(false)}} />
-          </>}
-          {specifyParams && <>
-            {distrParamsNames[distr][key]}
-            <input className="w-48" name={key} value={params[key]} maxLength={6} onChange={e => setParams({ ...params, [key]: e.target.value })} required/>
-
-          </>}
+    {!specifyParams && <div className="flex flex-col gap-3">
+      {Object.keys(params).map(key => <div key={key}>
+        <div className='flex items-center justify-between'>
+          <InlineMath math={`${distrParamsNames[distr][key]} = ${params[key]}`} />
+          <input type='range' min={distrParamsRange[distr][key].min} max={distrParamsRange[distr][key].max} step={distrParamsRange[distr][key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: e.target.value })} onMouseUp={() => { toggleTrigger(); setFailed(false) }} />
         </div>
-      ))}
+      </div>
+      )}
+    </div>}
+    {specifyParams && <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); setFailed(false); toggleTrigger() }}>
+      <div className="flex flex-wrap gap-3">
+        {Object.keys(params).map(key => <div key={key}>
+          <div className='flex items-center gap-2'>
+            <InlineMath math={`${distrParamsNames[distr][key]} = `} />
+            <input className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => setParams({ ...params, [key]: e.target.value })} required />
+          </div>
+        </div>
+        )}</div>
       {specifyParams && <button className="rounded-xl mt-1.5" type='submit'>Apply</button>}
-
-    </form>
+    </form>}
   </div>
 }
 

@@ -22,7 +22,7 @@ export default function Moments() {
   return <div>
     <h2>Moments</h2>
     <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">
-      <div className="flex flex-wrap gap-x-7 gap-y-3">
+      <div className="flex flex-wrap gap-x-11 gap-y-3">
         <InlineMath math={`E(X) = ${moments.mean}`} />
         <InlineMath math={`Var(X) = ${moments.variance}`} />
         <InlineMath math={`Skew(X) = ${moments.skewness}`} />
