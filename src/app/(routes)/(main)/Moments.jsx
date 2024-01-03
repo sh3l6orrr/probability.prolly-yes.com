@@ -1,9 +1,10 @@
 import { useProbabilityStore } from "./store"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { getMoments } from "./actions"
 
 export default function Moments() {
-  const { params, distr, setMoments, moments, trigger } = useProbabilityStore()
+  const { params, distr, trigger } = useProbabilityStore()
+  const [moments, setMoments] = useState({ mean: 0, variance: 1, skewness: 0, kurtosis: 0 })
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -19,21 +20,21 @@ export default function Moments() {
   return <div>
     <h2>Moments</h2>
     <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">
-      <div className="grid grid-cols-4 justify-items-center text-center">
-        <div>
-          <i>Mean</i>
+      <div className="flex gap-5">
+        <div className="flex px-4 items-center gap-2">
+          Mean
           <h2>{moments.mean}</h2>
         </div>
-        <div>
-          <i>Variance</i>
+        <div className="flex px-4 items-center gap-2">
+          Variance
           <h2>{moments.variance}</h2>
         </div>
-        <div>
-          <i>Skewness</i>
+        <div className="flex px-4 items-center gap-2">
+          Skewness
           <h2>{moments.skewness}</h2>
         </div>
-        <div>
-          <i>Kurtosis</i>
+        <div className="flex px-4 items-center gap-2">
+          Kurtosis
           <h2>{moments.kurtosis}</h2>
         </div>
       </div>
