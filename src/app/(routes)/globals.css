@@ -23,7 +23,7 @@ button {
 }
 
 .button-secondary {
-  @apply text-sm border-0 text-gray-600 dark:text-gray-400 hover:bg-inherit hover:underline
+  @apply text-sm border-0 text-gray-600 dark:text-gray-400 hover:bg-inherit hover:underline hover:dark:text-gray-400
 }
 input {
   @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border

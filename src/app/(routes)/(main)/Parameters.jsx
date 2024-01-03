@@ -61,12 +61,12 @@ const distrParamsRange = {
     loc: {
       min: -5,
       max: 5,
-      step: 1
+      step: 0.5
     },
     scale: {
       min: 1,
       max: 10,
-      step: 1
+      step: 0.5
     }
   },
   t: {
@@ -99,7 +99,7 @@ const distrParamsRange = {
     n: {
       min: 10,
       max: 50,
-      step: 1
+      step: 5
     },
     p: {
       min: 0,

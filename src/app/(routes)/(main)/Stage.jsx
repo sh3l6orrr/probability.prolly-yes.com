@@ -30,6 +30,7 @@ export default function Stage() {
       {showPlot.includes('pmf') && <div style={{ order: showPlot.indexOf('pmf') + 1 }}><PmfPlot /></div>}
       {showPlot.includes('cdf') && <div style={{ order: showPlot.indexOf('cdf') + 1 }}><CdfPlot /></div>}
       {showPlot.includes('sampling') && <div style={{ order: showPlot.indexOf('sampling') + 1 }}><Sampling /></div>}
+      {showPlot.length === 0 && <h1>{"Select one or more visualizations from the panel!"}</h1>}
     </div>
     <Script src="https://cdn.jsdelivr.net/npm/vega@5"></Script>
     <Script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></Script>
