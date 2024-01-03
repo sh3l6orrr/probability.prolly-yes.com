@@ -1,6 +1,5 @@
 'use client'
 
-import Script from "next/script"
 import PdfPlot from "./PdfPlot"
 import CdfPlot from "./CdfPlot"
 import Moments from "./Moments"
@@ -22,7 +21,6 @@ export default function Stage() {
       <Distribution />
       <Parameters />
       <Selector />
-
     </aside>
 
     <div className="p-8 flex flex-col gap-4 md:ml-96 ">
@@ -33,8 +31,6 @@ export default function Stage() {
       {showPlot.includes('sampling') && <div style={{ order: showPlot.indexOf('sampling') + 1 }}><Sampling /></div>}
       {showPlot.length === 0 && <h1>{"Select one or more visualizations from the panel!"}</h1>}
     </div>
-    <Script src="https://cdn.jsdelivr.net/npm/vega@5"></Script>
-    <Script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></Script>
-    <Script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></Script>
+
   </div>
 }

@@ -1,6 +1,7 @@
 import { useProbabilityStore } from "./store"
 import { useEffect, useState } from "react"
 import { getMoments } from "./actions"
+import { InlineMath } from 'react-katex'
 
 export default function Moments() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
@@ -21,23 +22,11 @@ export default function Moments() {
   return <div>
     <h2>Moments</h2>
     <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">
-      <div className="flex gap-5">
-        <div className="flex px-4 items-center gap-2">
-          Mean
-          <h2>{moments.mean}</h2>
-        </div>
-        <div className="flex px-4 items-center gap-2">
-          Variance
-          <h2>{moments.variance}</h2>
-        </div>
-        <div className="flex px-4 items-center gap-2">
-          Skewness
-          <h2>{moments.skewness}</h2>
-        </div>
-        <div className="flex px-4 items-center gap-2">
-          Kurtosis
-          <h2>{moments.kurtosis}</h2>
-        </div>
+      <div className="flex flex-wrap gap-x-7 gap-y-3">
+        <InlineMath math={`E(X) = ${moments.mean}`} />
+        <InlineMath math={`Var(X) = ${moments.variance}`} />
+        <InlineMath math={`Skew(X) = ${moments.skewness}`} />
+        <InlineMath math={`Kurt(X) = ${moments.kurtosis}`} />
       </div>
     </div>
   </div>

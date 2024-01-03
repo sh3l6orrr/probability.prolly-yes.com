@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useProbabilityStore } from "./store"
+import { InlineMath } from 'react-katex'
 
 export default function Parameters() {
   const { distr, params, setParams, toggleTrigger, setFailed } = useProbabilityStore()
@@ -17,7 +18,7 @@ export default function Parameters() {
       {Object.keys(params).map(key => (
         <div key={key} className='flex items-center justify-between'>
           {!specifyParams && <>
-            {distrParamsNames[distr][key]} = {params[key]}
+            <InlineMath math={`${distrParamsNames[distr][key]} = ${params[key]}`} />
             <input type='range' min={distrParamsRange[distr][key].min} max={distrParamsRange[distr][key].max} step={distrParamsRange[distr][key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: e.target.value })} onMouseUp={() => {toggleTrigger(); setFailed(false)}} />
           </>}
           {specifyParams && <>
@@ -30,29 +31,27 @@ export default function Parameters() {
       {specifyParams && <button className="rounded-xl mt-1.5" type='submit'>Apply</button>}
 
     </form>
-
-
   </div>
 }
 
 const distrParamsNames = {
   norm: {
-    loc: 'Mean',
-    scale: 'Variance'
+    loc: '\\mu',
+    scale: '\\sigma^2'
   },
   t: {
-    df: 'DF'
+    df: '\\nu'
   },
   f: {
-    dfn: 'DF1',
-    dfd: 'DF2'
+    dfn: 'd_1',
+    dfd: 'd_2'
   },
   chi2: {
-    df: 'DF'
+    df: 'k'
   },
   binom: {
-    n: '#Trials',
-    p: 'Win Rate'
+    n: 'n',
+    p: 'p'
   }
 }
 
