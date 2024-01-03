@@ -1,7 +1,7 @@
 import { useProbabilityStore } from "./store"
 
 export default function Distribution() {
-  const { distr, setDistr, setParams, toggleShowPlotPmfAndPdf, setType } = useProbabilityStore()
+  const { distr, setDistr, setParams, toggleShowPlotPmfAndPdf, setType, setFailed } = useProbabilityStore()
 
   return <div className="border-b p-8">
     <h3>Probability Distribution</h3>
@@ -13,6 +13,7 @@ export default function Distribution() {
           onClick={() => {
             setParams(distrDefaultParams[item.label])
             setDistr(item.label)
+            setFailed(false)
             if (discreteDistributions.includes(item.label)) {
               setType('discrete')
               toggleShowPlotPmfAndPdf('pmf')

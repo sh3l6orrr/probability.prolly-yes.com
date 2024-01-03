@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getMoments } from "./actions"
 
 export default function Moments() {
-  const { params, distr, trigger } = useProbabilityStore()
+  const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [moments, setMoments] = useState({ mean: 0, variance: 1, skewness: 0, kurtosis: 0 })
   useEffect(() => {
     let formData = new FormData();
@@ -13,6 +13,7 @@ export default function Moments() {
     async function update() {
       const moments = await getMoments(formData)
       if (moments) setMoments(moments)
+      else setFailed(true)
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps

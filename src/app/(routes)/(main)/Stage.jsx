@@ -22,6 +22,7 @@ export default function Stage() {
       <Distribution />
       <Parameters />
       <Selector />
+
     </aside>
 
     <div className="p-8 flex flex-col gap-4 md:ml-96 ">

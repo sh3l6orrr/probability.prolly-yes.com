@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store";
 import { useEffect } from "react";
 
 export default function CdfPlot() {
-  const { params, distr, trigger } = useProbabilityStore()
+  const { params, distr, trigger, setFailed } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -12,7 +12,7 @@ export default function CdfPlot() {
     async function update() {
       const cdf = await showCdf(formData)
       if (cdf) await vegaEmbed('#cdf', cdf, { height: 334 })
-
+      else setFailed(true)
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps

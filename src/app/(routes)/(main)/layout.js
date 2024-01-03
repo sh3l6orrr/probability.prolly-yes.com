@@ -6,9 +6,10 @@ export default function Layout({ children }) {
       <div className="w-8" />
       <Link href='/'><span className="text-xl">ProllyYes</span></Link>
       <div className="grow" />
-      <Link href='/about'><span className="text-xl">Github</span></Link>
-      <div className="w-6" />
-      <Link href='/about'><span className="text-xl">About</span></Link>
+      <div className="flex gap-6">
+        <Link href='/news'><span className="text-xl">News</span></Link>
+        <Link href='/about'><span className="text-xl">About</span></Link>
+      </div>
       <div className="w-8" />
     </header>
     <div className='mt-12'>

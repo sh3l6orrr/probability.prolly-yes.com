@@ -7,6 +7,8 @@ export const useProbabilityStore = create((set) => ({
   showPlot: ['moments', 'pdf'],
   nSample: 50,
   trigger: false,
+  falied: false,
+  setFailed: (newVal) => set(() => ({ failed: newVal })),
   toggleTrigger: () => set((state) => ({ trigger: !state.trigger })),
   setDistr: (newDistr) => set({ distr: newDistr }),
   setParams: (newParams) => set({ params: newParams }),

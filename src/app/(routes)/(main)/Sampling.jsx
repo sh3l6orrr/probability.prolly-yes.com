@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store"
 import { getSampling } from "./actions"
 
 export default function Sampling() {
-  const { nSample, setNSample, distr, params, trigger } = useProbabilityStore()
+  const { nSample, setNSample, distr, params, trigger, setFailed } = useProbabilityStore()
   const [specifyN, setSpecifyN] = useState(false)
   const [triggerSample, setTriggerSample] = useState(false)
   const contentRef = useRef(null)
@@ -20,7 +20,7 @@ export default function Sampling() {
       if (sampling) {
         await vegaEmbed('#sampling', sampling.hist, { height: 334 })
         document.getElementById('sample').textContent = sampling.sample.join(', ')
-      }
+      } else setFailed(true)
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps

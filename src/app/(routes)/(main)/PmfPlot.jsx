@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store";
 import { showPmf } from "./actions";
 
 export default function PmfPlot() {
-  const { params, distr, trigger } = useProbabilityStore()
+  const { params, distr, trigger, setFailed } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -12,7 +12,7 @@ export default function PmfPlot() {
     async function update() {
       const pmf = await showPmf(formData)
       if (pmf) await vegaEmbed('#pmf', pmf, { height: 334 })
-
+      else setFailed(true)
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps

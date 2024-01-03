@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store";
 import { showPdf } from "./actions";
 
 export default function PdfPlot() {
-  const { params, distr, trigger } = useProbabilityStore()
+  const { params, distr, trigger, setFailed } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -12,6 +12,7 @@ export default function PdfPlot() {
     async function update() {
       const pdf = await showPdf(formData)
       if (pdf) await vegaEmbed('#pdf', pdf, { height: 334 })
+      else setFailed(true)
 
     }
     update()
