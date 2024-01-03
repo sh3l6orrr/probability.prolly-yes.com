@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { getMoments } from "./actions"
 
 export default function Moments() {
-  const { params, distr, setMoments, moments } = useProbabilityStore()
+  const { params, distr, setMoments, moments, trigger } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -15,7 +15,7 @@ export default function Moments() {
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params, distr])
+  }, [trigger, distr])
   return <div>
     <h2>Moments</h2>
     <div className="bg-neutral-100 dark:bg-black shadow-lg rounded-2xl p-6">

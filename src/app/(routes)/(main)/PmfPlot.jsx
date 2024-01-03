@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store";
 import { showPmf } from "./actions";
 
 export default function PmfPlot() {
-  const { params, distr } = useProbabilityStore()
+  const { params, distr, trigger } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -15,7 +15,8 @@ export default function PmfPlot() {
 
     }
     update()
-  }, [params, distr])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger, distr])
 
   return <div>
     <h2>Probability Mass Function (PMF)</h2>

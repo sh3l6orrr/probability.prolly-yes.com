@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store";
 import { useEffect } from "react";
 
 export default function CdfPlot() {
-  const { params, distr } = useProbabilityStore()
+  const { params, distr, trigger } = useProbabilityStore()
   useEffect(() => {
     let formData = new FormData();
     for (const key in params) formData.append(key, params[key])
@@ -15,7 +15,8 @@ export default function CdfPlot() {
 
     }
     update()
-  }, [params, distr])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger, distr])
 
   return <div>
     <h2>Cumulative Distribution Function (CDF)</h2>
