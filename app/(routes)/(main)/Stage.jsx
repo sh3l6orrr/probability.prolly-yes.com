@@ -29,7 +29,7 @@ export default function Stage() {
       {showPlot.includes('pmf') && <div style={{ order: showPlot.indexOf('pmf') + 1 }}><PmfPlot /></div>}
       {showPlot.includes('cdf') && <div style={{ order: showPlot.indexOf('cdf') + 1 }}><CdfPlot /></div>}
       {showPlot.includes('sampling') && <div style={{ order: showPlot.indexOf('sampling') + 1 }}><Sampling /></div>}
-      {showPlot.length === 0 && <h1>{"Select one or more visualizations from the panel!"}</h1>}
+      {showPlot.length === 0 && <h2>{"You didn't select any visualizations."}</h2>}
     </div>
 
   </div>

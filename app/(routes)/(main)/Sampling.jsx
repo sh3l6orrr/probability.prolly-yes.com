@@ -36,27 +36,25 @@ export default function Sampling() {
         <div className='plot' id='sampling' />
       </div>
 
-      <div className="flex flex-col gap-3 w-full max-h-96">
-        <div>
-          {!specifyN && <div className="flex justify-between">
-            <div className='flex flex-wrap gap-2 items-center'>
-              <InlineMath math={`n =`} />
-              {defaultSampleSizes.map(item => <button key={item} className={nSample === item ? 'bg-blue-200 dark:text-black' : ''} onClick={() => {
-                setNSample(item)
-                setTriggerSample(!triggerSample)
-              }}>{item}</button>)}
-            </div>
-            <button className='button-secondary' onClick={() => setSpecifyN(true)}>Customize</button>
-          </div>}
-          {specifyN && <div className="flex justify-between">
-            <div className='flex flex-wrap gap-2 items-center'>
-              <InlineMath math={`n =`} />
-              <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
-              <button onClick={() => setTriggerSample(!triggerSample)}>Generate</button>
-            </div>
-            <button className='button-secondary' onClick={() => setSpecifyN(false)}>Use Default Values</button>
-          </div>}
-        </div>
+      <div className="flex flex-col gap-3 max-h-96 grow">
+        {!specifyN && <div className="flex justify-between">
+          <div className='flex flex-wrap gap-2 items-center'>
+            <InlineMath math={`n =`} />
+            {defaultSampleSizes.map(item => <button key={item} className={nSample === item ? 'bg-blue-200 dark:text-black' : ''} onClick={() => {
+              setNSample(item)
+              setTriggerSample(!triggerSample)
+            }}>{item}</button>)}
+          </div>
+          <button className='button-secondary' onClick={() => setSpecifyN(true)}>Customize</button>
+        </div>}
+        {specifyN && <div className="flex justify-between">
+          <div className='flex flex-wrap gap-2 items-center'>
+            <InlineMath math={`n =`} />
+            <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
+            <button onClick={() => setTriggerSample(!triggerSample)}>Generate</button>
+          </div>
+          <button className='button-secondary' onClick={() => setSpecifyN(false)}>Use Default Values</button>
+        </div>}
         <div className="flex justify-between">
           <div>
             Samples generated:
@@ -66,8 +64,8 @@ export default function Sampling() {
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
         </div>
-        <div ref={contentRef} className='overflow-y-scroll max-h-full border rounded-2xl p-3 border-gray-300 dark:border-gray-700' id='sample' />
 
+        <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 ' id='sample' />
       </div>
     </div>
   </div>
