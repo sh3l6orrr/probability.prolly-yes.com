@@ -9,11 +9,13 @@ export default function Layout({ children }) {
       <div className="grow" />
       <div className="flex gap-6">
         <Link href='/news'><span className="text-xl">News</span></Link>
+        <Link href='/news'><span className="text-xl">Github</span></Link>
         <Link href='/about'><span className="text-xl">About</span></Link>
       </div>
       <div className="w-8" />
     </header>
-    <div className='mt-12'>
+    <div>
+    <div className="h-12" />
       {children}
     </div>
   </>
