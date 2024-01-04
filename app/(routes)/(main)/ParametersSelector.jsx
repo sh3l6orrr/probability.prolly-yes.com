@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store"
 import { InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig"
 
-export default function Parameters() {
+export default function ParametersSelector() {
   const { distr, params, setParams, toggleTrigger, setFailed } = useProbabilityStore()
   const [specifyParams, setSpecifyParams] = useState(false)
 

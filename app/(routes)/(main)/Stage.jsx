@@ -3,9 +3,9 @@
 import PdfPlot from "./PdfPlot"
 import CdfPlot from "./CdfPlot"
 import Moments from "./Moments"
-import Selector from "./Selector"
-import Parameters from "./Parameters"
-import Distribution from "./Distribution"
+import ShowPlotSelector from "./ShowPlotSelector"
+import ParametersSelector from "./ParametersSelector"
+import DistributionSelector from "./DistributionSelector"
 import Panel from "./Panel"
 import Sampling from "./Sampling"
 import { useProbabilityStore } from "./store"
@@ -17,9 +17,9 @@ export default function Stage() {
     <aside className="bg-white dark:bg-black flex flex-col
     w-screen md:fixed md:w-96 md:h-screen md:border-r">
       <Panel />
-      <Distribution />
-      <Parameters />
-      <Selector />
+      <DistributionSelector />
+      <ParametersSelector />
+      <ShowPlotSelector />
     </aside>
 
     <div className="p-8 flex flex-col gap-4 md:ml-96 ">

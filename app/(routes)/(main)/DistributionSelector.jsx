@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useProbabilityStore } from "./store"
 import distriConfig from "./distrConfig"
 
-export default function Distribution() {
+export default function DistributionSelector() {
   const { distr, setDistr, setParams, setType, setFailed } = useProbabilityStore()
   const [selectType, setSelectType] = useState('continuous')
 
