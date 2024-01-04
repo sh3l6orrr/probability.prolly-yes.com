@@ -19,7 +19,7 @@ h3 {
 }
 
 button {
-  @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black
+  @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black border-gray-600 dark:border-gray-400
 }
 
 .button-secondary {

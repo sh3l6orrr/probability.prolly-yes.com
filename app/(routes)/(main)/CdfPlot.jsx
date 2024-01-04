@@ -21,7 +21,7 @@ export default function CdfPlot() {
 
   return <div>
     <h2>Cumulative Distribution Function (CDF)</h2>
-    <div id='show' className="visualization">
+    <div className="visualization">
       <div>
         <div className='plot' id='cdf' />
       </div>
