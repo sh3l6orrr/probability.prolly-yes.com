@@ -66,7 +66,7 @@ export default function Sampling() {
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
         </div>
-        <div ref={contentRef} className='overflow-y-scroll max-h-full border rounded-2xl p-3 border-gray-300' id='sample' />
+        <div ref={contentRef} className='overflow-y-scroll max-h-full border rounded-2xl p-3 border-gray-300 dark:border-gray-700' id='sample' />
 
       </div>
     </div>

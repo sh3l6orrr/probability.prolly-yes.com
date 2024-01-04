@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useProbabilityStore } from "./store";
 import { showPmf } from "./actions";
+import { BlockMath } from 'react-katex'
 
 export default function PmfPlot() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
@@ -21,7 +22,16 @@ export default function PmfPlot() {
   return <div>
     <h2>Probability Mass Function (PMF)</h2>
     <div className="visualization">
-      <div className='plot' id='pmf' />
+      <div>
+        <div className='plot' id='pmf' />
+      </div>
+      <div className="flex">
+        <BlockMath math={expr[distr]} />
+      </div>
     </div>
   </div>
+}
+
+const expr = {
+  binom: 'P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}'
 }
