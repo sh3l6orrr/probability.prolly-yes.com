@@ -20,13 +20,5 @@ export const useProbabilityStore = create((set) => ({
     } else {
       return { showPlot: [...state.showPlot, newShowPlot] };
     }
-  }),
-  toggleShowPlotPmfAndPdf: (newShowPlot) => set((state) => {
-    if (newShowPlot === 'pdf') {
-      return { showPlot: state.showPlot.map(item => item.replace('pmf', 'pdf')) }
-    }
-    if (newShowPlot === 'pmf') {
-      return { showPlot: state.showPlot.map(item => item.replace('pdf', 'pmf')) }
-    }
   })
 }))

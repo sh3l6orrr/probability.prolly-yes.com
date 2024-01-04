@@ -1,37 +1,48 @@
+import { useState } from "react"
 import { useProbabilityStore } from "./store"
 
 export default function Distribution() {
-  const { distr, setDistr, setParams, toggleShowPlotPmfAndPdf, setType, setFailed } = useProbabilityStore()
+  const { distr, setDistr, setParams, setType, setFailed } = useProbabilityStore()
+  const [selectType, setSelectType] = useState('continuous')
+  const distributions = selectType === 'continuous' ? continuousDistributions : discreteDistributions
 
   return <div className="border-b p-8">
-    <h3>Probability Distribution</h3>
+    <div className="flex items-center justify-between">
+      <h3>Probability Distribution</h3>
+      {selectType === 'continuous' ?
+        <button className="button-secondary" onClick={() => { setSelectType('discrete') }}>Continuous</button>
+        : <button className="button-secondary" onClick={() => { setSelectType('continuous') }}>Discrete</button>}
+    </div>
+
     <div className="h-3"></div>
-    <div className="flex flex-wrap gap-3">
-      {
-        distributions.map(item => <button key={item.name}
-          className={distr === item.label ? 'bg-blue-200 dark:text-black' : ''}
-          onClick={() => {
-            setParams(distrDefaultParams[item.label])
-            setDistr(item.label)
-            setFailed(false)
-            if (discreteDistributions.includes(item.label)) {
-              setType('discrete')
-              toggleShowPlotPmfAndPdf('pmf')
-            } else {
-              setType('continuous')
-              toggleShowPlotPmfAndPdf('pdf')
-            }
-          }}>
-          {item.name}
-        </button>)
-      }
+    <div className="flex flex-col gap-4">
+      <input placeholder="Search..." />
+      <div className="flex flex-wrap gap-3">
+        {
+          distributions.map(item => <button key={item.name}
+            className={distr === item.label ? 'bg-blue-200 dark:text-black' : ''}
+            onClick={() => {
+              setParams(distrDefaultParams[item.label])
+              setDistr(item.label)
+              setFailed(false)
+              if (selectType === 'discrete') {
+                setType('discrete')
+              } else {
+                setType('continuous')
+              }
+            }}>
+            {item.name}
+          </button>)
+        }
+      </div>
+
     </div>
 
 
   </div>
 }
 
-const distributions = [
+const continuousDistributions = [
   {
     name: 'Normal',
     label: 'norm',
@@ -47,13 +58,16 @@ const distributions = [
   {
     name: "F",
     label: 'f',
-  },
+  }
+]
+
+
+const discreteDistributions = [
   {
     name: 'Binomial',
     label: 'binom'
   }
 ]
-
 const distrDefaultParams = {
   norm: {
     loc: 0,
@@ -74,7 +88,3 @@ const distrDefaultParams = {
     p: 0.3
   }
 }
-
-const discreteDistributions = [
-  'binom'
-]
