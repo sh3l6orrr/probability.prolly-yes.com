@@ -294,6 +294,98 @@ const distriConfig = {
         step: 0.1
       }
     }
+  },
+  weibull_min: {
+    name: 'Weibull',
+    label: 'Weibull',
+    type: 'continuous',
+    pdf: 'f(x) = \\frac{k}{\\lambda}\\left(\\frac{x}{\\lambda}\\right)^{k-1} e^{-(x/\\lambda)^k}',
+    cdf: 'F(x) = 1 - e^{-(x/\\lambda)^k}',
+    params: {
+      c: {
+        label: 'k',
+        default: 2,
+        min: 1,
+        max: 5,
+        step: 0.5
+      },
+      scale: {
+        label: '\\lambda',
+        default: 1,
+        min: 0.1,
+        max: 5,
+        step: 0.1
+      }
+    }
+  },
+  cauchy: {
+    name: 'Cauchy',
+    label: 'Cauchy',
+    type: 'continuous',
+    pdf: 'f(x) = \\frac{1}{\\pi\\gamma(1 + \\left(\\frac{x - x_0}{\\gamma}\\right)^2)}',
+    cdf: 'F(x) = \\frac{1}{2} + \\frac{1}{\\pi}\\arctan\\left(\\frac{x - x_0}{\\gamma}\\right)',
+    params: {
+      loc: {
+        label: 'x_0',
+        default: 0,
+        min: -5,
+        max: 5,
+        step: 1
+      },
+      scale: {
+        label: '\\gamma',
+        default: 1,
+        min: 0.1,
+        max: 5,
+        step: 0.1
+      }
+    }
+  },
+  logistic: {
+    name: 'Logistic',
+    label: 'Logistic',
+    type: 'continuous',
+    pdf: 'f(x) = \\frac{e^{-(x-\\mu)/s}}{s(1 + e^{-(x-\\mu)/s})^2}',
+    cdf: 'F(x) = \\frac{1}{1 + e^{-(x-\\mu)/s}}',
+    params: {
+      loc: {
+        label: '\\mu',
+        default: 0,
+        min: -5,
+        max: 5,
+        step: 1
+      },
+      scale: {
+        label: 's',
+        default: 1,
+        min: 0.1,
+        max: 5,
+        step: 0.1
+      }
+    }
+  },
+  lognorm: {
+    name: 'Log-Normal',
+    label: 'LogNormal',
+    type: 'continuous',
+    pdf: 'f(x) = \\frac{1}{x\\sigma\\sqrt{2\\pi}}e^{-\\frac{(\\ln(x) - \\mu)^2}{2\\sigma^2}}',
+    cdf: 'F(x) = \\frac{1}{2} + \\frac{1}{2}\\text{erf}\\left(\\frac{\\ln(x) - \\mu}{\\sigma\\sqrt{2}}\\right)',
+    params: {
+      loc: {
+        label: '\\mu',
+        default: 0,
+        min: -5,
+        max: 5,
+        step: 1
+      },
+      s: {
+        label: '\\sigma',
+        default: 1,
+        min: 0.1,
+        max: 2,
+        step: 0.1
+      }
+    }
   }
 }
 
