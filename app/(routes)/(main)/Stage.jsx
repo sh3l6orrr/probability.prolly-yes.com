@@ -15,7 +15,8 @@ export default function Stage() {
 
   return <div>
     <aside className="bg-white dark:bg-black flex flex-col
-    w-screen md:fixed md:w-96 md:h-screen md:border-r">
+    w-screen md:fixed md:w-96 md:h-screen md:border-r md:overflow-scroll md:top-0">
+      <div className="md:h-12" />
       <Panel />
       <DistributionSelector />
       <ParametersSelector />

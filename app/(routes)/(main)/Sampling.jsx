@@ -9,6 +9,7 @@ export default function Sampling() {
   const [specifyN, setSpecifyN] = useState(false)
   const [spec, setSpec] = useState({})
   const [thisTrigger, setThisTrigger] = useState(false)
+  const [samples, setSamples] = useState([''])
   const [plotSize, setPlotSize] = useState({
     width: 400,
     height: 300
@@ -28,7 +29,7 @@ export default function Sampling() {
       const sampling = await getSampling(data)
       if (sampling) {
         setSpec(sampling)
-        document.getElementById('sample').textContent = sampling.sample.join(', ')
+        setSamples(sampling.sample)
       } else setFailed(true)
     }
     update()
@@ -69,7 +70,7 @@ export default function Sampling() {
           }}> Copy </button>
         </div>
 
-        <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 ' id='sample' />
+        <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 '>{samples.join(', ')}</div>
         <form className="flex items-center gap-5 flex-wrap">
           <h4>Plot Size</h4>
 
@@ -84,7 +85,7 @@ export default function Sampling() {
         </form>
       </div>
       <div>
-        <Vega spec={spec} className="plot" actions={false}/>
+        <Vega spec={spec} className="plot" actions={false} width={500}/>
       </div>
     </div>
 
