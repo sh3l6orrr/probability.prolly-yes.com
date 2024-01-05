@@ -73,6 +73,55 @@ export async function getMoments(data) {
   return pdf
 }
 
+export async function calcPdf(data) {
+  const res = await fetch(url + '/probability/calc_pdf', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let val
+  try {
+    val = await res.json()
+  } catch (error) {
+    return null
+  }
+  return val
+}
+export async function calcCdf(data) {
+  const res = await fetch(url + '/probability/calc_cdf', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let val
+  try {
+    val = await res.json()
+  } catch (error) {
+    return null
+  }
+  return val
+}
+export async function calcPpf(data) {
+  const res = await fetch(url + '/probability/calc_ppf', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let val
+  try {
+    val = await res.json()
+  } catch (error) {
+    return null
+  }
+  return val
+}
+
 export async function getSampling(data) {
   const res = await fetch(url + '/probability/sampling', {
     method: 'POST',

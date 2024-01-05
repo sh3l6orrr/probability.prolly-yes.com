@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store";
-import { showPdf, showPmf } from "./actions";
-import { BlockMath } from 'react-katex'
+import { calcPdf, showPdf, showPmf } from "./actions";
+import { BlockMath, InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig";
 import { Vega } from 'react-vega';
 import PlotSizeToggler from "./PlotSizeToggler";
@@ -10,6 +10,8 @@ export default function PdfPlot({ pmf }) {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [thisTrigger, setThisTrigger] = useState(false)
   const [spec, setSpec] = useState({})
+  const [val, setVal] = useState(0)
+  const [result, setResult] = useState(0)
   const [plotRange, setPlotRange] = useState({
     x: {
       min: -5,
@@ -54,7 +56,30 @@ export default function PdfPlot({ pmf }) {
           <h4>Formula</h4>
           <BlockMath math={distriConfig[distr].pdf} />
         </div>
-
+        <div className="flex items-center gap-5 flex-wrap">
+          <h4>Calculate</h4>
+          <div className="flex flex-col gap-2">
+            <form className="flex gap-2 items-center" onSubmit={async e => {
+              e.preventDefault()
+              const data = {
+                distr: {
+                  name: distr,
+                  params: params
+                },
+                x: val
+              }
+              const res = await calcPdf(data)
+              if (res) setResult(res.val)
+            }}>
+              <InlineMath math={'x = '} />
+              <input type='number' step='0.001' className="w-16" value={val}
+                onChange={e => setVal(parseFloat(e.target.value))} />
+              <button type='submit' className="button-secondary">Apply</button>
+            </form>
+            <InlineMath math={`f(${val}) = ${result}`} />
+          </div>
+        </div>
+        <div className="grow" />
         <form className="flex items-center gap-5 flex-wrap" onSubmit={e => {
           e.preventDefault()
           setThisTrigger(!thisTrigger)
@@ -78,10 +103,11 @@ export default function PdfPlot({ pmf }) {
           </div>
           <button type='submit' className="button-secondary">Apply</button>
         </form>
-        <div className="grow" />
-        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
 
+
+        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
       </div>
+
       <div className="overflow-auto">
         <Vega className='plot' spec={spec} actions={false} />
       </div>

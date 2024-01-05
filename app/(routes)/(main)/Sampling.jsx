@@ -6,11 +6,12 @@ import { Vega } from "react-vega"
 import PlotSizeToggler from "./PlotSizeToggler"
 
 export default function Sampling() {
-  const { nSample, setNSample, distr, params, trigger, setFailed } = useProbabilityStore()
+  const { distr, params, trigger, setFailed } = useProbabilityStore()
   const [specifyN, setSpecifyN] = useState(false)
   const [spec, setSpec] = useState({})
   const [thisTrigger, setThisTrigger] = useState(false)
   const [samples, setSamples] = useState([''])
+  const [nSample, setNSample] = useState(50)
   const [plotSize, setPlotSize] = useState({
     width: 400,
     height: 300
@@ -56,7 +57,7 @@ export default function Sampling() {
         {specifyN && <div className="flex justify-between">
           <div className='flex flex-wrap gap-2 items-center'>
             <InlineMath math={`n =`} />
-            <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(e.target.value)} />
+            <input className='w-32' name='nSample' maxLength="4" value={nSample} onChange={e => setNSample(parseInt(e.target.value))} />
             <button onClick={() => setThisTrigger(!thisTrigger)}>Generate</button>
           </div>
           <button className='button-secondary' onClick={() => setSpecifyN(false)}>Use Default Values</button>
