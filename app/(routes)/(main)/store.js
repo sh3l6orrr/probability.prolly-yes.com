@@ -8,6 +8,17 @@ export const useProbabilityStore = create((set) => ({
   nSample: 50,
   trigger: false,
   falied: false,
+  pdfPlotRange: {
+    x: {
+      min: -5, 
+      max: 5
+    },
+    y: {
+      min: 0,
+      max: 1
+    }
+  },
+  setPdfPlotRange: (newVal) => set(() => ({ pdfPlotRange: newVal })),
   setFailed: (newVal) => set(() => ({ failed: newVal })),
   toggleTrigger: () => set((state) => ({ trigger: !state.trigger })),
   setDistr: (newDistr) => set({ distr: newDistr }),

@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store"
 import distriConfig from "./distrConfig"
 
 export default function DistributionSelector() {
-  const { distr, setDistr, setParams, setType, setFailed } = useProbabilityStore()
+  const { distr, setDistr, setParams, setType, setFailed, toggleTrigger } = useProbabilityStore()
   const [selectType, setSelectType] = useState('continuous')
 
   return <div className="border-b p-8">
@@ -21,10 +21,11 @@ export default function DistributionSelector() {
           Object.keys(distriConfig).map(item => distriConfig[item].type === selectType && <button key={item}
             className={distr === item ? 'bg-blue-200 dark:text-black' : ''}
             onClick={() => {
+              setFailed(false)
               setParams(Object.fromEntries(Object.keys(distriConfig[item].params).map(key => [key, distriConfig[item].params[key].default])))
               setDistr(item)
-              setFailed(false)
               setType(selectType)
+              toggleTrigger()
             }}>
             {distriConfig[item].name}
           </button>)

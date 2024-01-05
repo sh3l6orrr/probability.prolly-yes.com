@@ -26,7 +26,7 @@ export default function Sampling() {
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [distr, trigger, triggerSample])
+  }, [trigger, triggerSample])
 
 
 

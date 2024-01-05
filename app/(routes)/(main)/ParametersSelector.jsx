@@ -20,7 +20,7 @@ export default function ParametersSelector() {
       {Object.keys(params).map(key => <div key={key}>
         <div className='flex items-center justify-between'>
           <InlineMath math={`${distriConfig[distr].params[key].label} = ${params[key]}`} />
-          <input type='range' min={distriConfig[distr].params[key].min} max={distriConfig[distr].params[key].max} step={distriConfig[distr].params[key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: parseFloat(e.target.value) })} onMouseUp={() => { toggleTrigger(); setFailed(false) }} />
+          <input type='range' min={distriConfig[distr].params[key].min} max={distriConfig[distr].params[key].max} step={distriConfig[distr].params[key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: parseFloat(e.target.value) })} onMouseUp={() => { setFailed(false); toggleTrigger()  }} />
         </div>
       </div>
       )}
@@ -37,7 +37,7 @@ export default function ParametersSelector() {
         {Object.keys(params).map(key => <div key={key}>
           <div className='flex items-center gap-2'>
             <InlineMath math={`${distriConfig[distr].params[key].label} = `} />
-            <input className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => {
+            <input type="number" step='0.001' className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => {
               setParams({ ...params, [key]: e.target.value })
             }} required />
           </div>

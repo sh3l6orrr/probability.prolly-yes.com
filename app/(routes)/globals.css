@@ -17,6 +17,9 @@ h2 {
 h3 {
   @apply text-xl
 }
+h4 {
+  @apply text-lg
+}
 
 button {
   @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black border-gray-600 dark:border-gray-400
@@ -71,6 +74,13 @@ input[type="range"] {
   [&::-moz-range-track]:rounded-full
 }
 
-select {
-  @apply dark:bg-slate-900;
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* For some browsers, including Chrome and Safari */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -20,7 +20,7 @@ export default function Moments() {
     }
     update()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trigger, distr])
+  }, [trigger])
   return <div>
     <h2>Moments</h2>
     <div className="visualization">
