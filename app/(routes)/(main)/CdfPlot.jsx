@@ -4,6 +4,7 @@ import { useProbabilityStore } from "./store";
 import { useEffect, useState } from "react";
 import { BlockMath } from 'react-katex'
 import { Vega } from "react-vega";
+import PlotSizeToggler from "./PlotSizeToggler";
 
 export default function CdfPlot() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
@@ -39,18 +40,9 @@ export default function CdfPlot() {
           <h4>Formula</h4>
           <BlockMath math={distriConfig[distr].cdf} />
         </div>
-        <form className="flex items-center gap-5 flex-wrap">
-          <h4>Plot Size</h4>
+        <div className="grow" />
+        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize}setThisTrigger={setThisTrigger} />
 
-          <div className="flex gap-5 items-center">
-            Width
-            <input type="range" min='250' max='500' className="w-16" value={plotSize.width}
-              onChange={e => setPlotSize({ ...plotSize, width: e.target.value })} onMouseUp={() => setThisTrigger(!thisTrigger)} />
-            Height
-            <input type="range" min='250' max='500' className="w-16" value={plotSize.height}
-              onChange={e => setPlotSize({ ...plotSize, height: e.target.value })} onMouseUp={() => setThisTrigger(!thisTrigger)} />
-          </div>
-        </form>
       </div>
       <div>
         <Vega className='plot' spec={spec} actions={false} />

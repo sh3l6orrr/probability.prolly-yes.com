@@ -3,6 +3,7 @@ import { useProbabilityStore } from "./store"
 import { getSampling } from "./actions"
 import { InlineMath } from 'react-katex'
 import { Vega } from "react-vega"
+import PlotSizeToggler from "./PlotSizeToggler"
 
 export default function Sampling() {
   const { nSample, setNSample, distr, params, trigger, setFailed } = useProbabilityStore()
@@ -28,7 +29,7 @@ export default function Sampling() {
     async function update() {
       const sampling = await getSampling(data)
       if (sampling) {
-        setSpec(sampling)
+        setSpec(sampling.hist)
         setSamples(sampling.sample)
       } else setFailed(true)
     }
@@ -41,7 +42,7 @@ export default function Sampling() {
   return <div>
     <h2>Sampling From the Distribution</h2>
     <div className="visualization">
-      <div className="flex flex-col gap-5 max-h-96 grow">
+      <div className={`flex flex-col gap-5 grow`}>
         {!specifyN && <div className="flex justify-between">
           <div className='flex flex-wrap gap-2 items-center'>
             <InlineMath math={`n =`} />
@@ -71,21 +72,10 @@ export default function Sampling() {
         </div>
 
         <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 '>{samples.join(', ')}</div>
-        <form className="flex items-center gap-5 flex-wrap">
-          <h4>Plot Size</h4>
-
-          <div className="flex gap-5 items-center">
-            Width
-            <input type="range" min='250' max='500' className="w-16" value={plotSize.width}
-              onChange={e => setPlotSize({ ...plotSize, width: e.target.value })} onMouseUp={() => setThisTrigger(!thisTrigger)} />
-            Height
-            <input type="range" min='250' max='500' className="w-16" value={plotSize.height}
-              onChange={e => setPlotSize({ ...plotSize, height: e.target.value })} onMouseUp={() => setThisTrigger(!thisTrigger)} />
-          </div>
-        </form>
+        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger}/>
       </div>
       <div>
-        <Vega spec={spec} className="plot" actions={false} width={500}/>
+        <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>
 
