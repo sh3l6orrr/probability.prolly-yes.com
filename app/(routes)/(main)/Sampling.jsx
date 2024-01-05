@@ -10,14 +10,15 @@ export default function Sampling() {
   const contentRef = useRef(null)
 
   useEffect(() => {
-    let formData = new FormData();
-    for (const key in params) formData.append(key, params[key])
-    formData.append('distr', distr)
-
+    const data = {
+      distr: {
+        name: distr,
+        params: params
+      },
+      n_sample: nSample
+    }
     async function update() {
-      const newformData = formData
-      newformData.append('n_sample', nSample)
-      const sampling = await getSampling(newformData)
+      const sampling = await getSampling(data)
       if (sampling) {
         await vegaEmbed('#sampling', sampling.hist, { height: 334, actions: false })
         document.getElementById('sample').textContent = sampling.sample.join(', ')
@@ -32,10 +33,6 @@ export default function Sampling() {
   return <div>
     <h2>Sampling From the Distribution</h2>
     <div className="visualization">
-      <div>
-        <div className='plot' id='sampling' />
-      </div>
-
       <div className="flex flex-col gap-3 max-h-96 grow">
         {!specifyN && <div className="flex justify-between">
           <div className='flex flex-wrap gap-2 items-center'>
@@ -67,7 +64,11 @@ export default function Sampling() {
 
         <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 ' id='sample' />
       </div>
+      <div>
+        <div className='plot' id='sampling' />
+      </div>
     </div>
+
   </div>
 }
 

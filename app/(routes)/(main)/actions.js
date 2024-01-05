@@ -2,10 +2,14 @@
 
 import url from "../url"
 
-export async function showPdf(formData) {
+export async function showPdf(data) {
   const res = await fetch(url + '/probability/pdf', {
     method: 'POST',
-    body: formData
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+    cache: 'no-store'
   })
   let pdf
   try {
@@ -16,10 +20,13 @@ export async function showPdf(formData) {
   return pdf
 }
 
-export async function showPmf(formData) {
+export async function showPmf(data) {
   const res = await fetch(url + '/probability/pmf', {
     method: 'POST',
-    body: formData
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
   })
   let pmf
   try {
@@ -30,10 +37,13 @@ export async function showPmf(formData) {
   return pmf
 }
 
-export async function showCdf(formData) {
+export async function showCdf(data) {
   const res = await fetch(url + '/probability/cdf', {
     method: 'POST',
-    body: formData
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
   })
   let cdf
   try {
@@ -44,10 +54,13 @@ export async function showCdf(formData) {
   return cdf
 }
 
-export async function getMoments(formData) {
+export async function getMoments(data) {
   const res = await fetch(url + '/probability/moments', {
     method: 'POST',
-    body: formData
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
   })
   let pdf
   try {
@@ -60,10 +73,13 @@ export async function getMoments(formData) {
   return pdf
 }
 
-export async function getSampling(formData) {
+export async function getSampling(data) {
   const res = await fetch(url + '/probability/sampling', {
     method: 'POST',
-    body: formData,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
     cache: 'no-store'
   })
   let sampling

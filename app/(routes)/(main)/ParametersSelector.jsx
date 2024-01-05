@@ -6,6 +6,7 @@ import distriConfig from "./distrConfig"
 export default function ParametersSelector() {
   const { distr, params, setParams, toggleTrigger, setFailed } = useProbabilityStore()
   const [specifyParams, setSpecifyParams] = useState(false)
+  const [tempParams, setTempParams] = useState(params)
 
 
   return <div className="border-b p-8">
@@ -19,17 +20,26 @@ export default function ParametersSelector() {
       {Object.keys(params).map(key => <div key={key}>
         <div className='flex items-center justify-between'>
           <InlineMath math={`${distriConfig[distr].params[key].label} = ${params[key]}`} />
-          <input type='range' min={distriConfig[distr].params[key].min} max={distriConfig[distr].params[key].max} step={distriConfig[distr].params[key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: e.target.value })} onMouseUp={() => { toggleTrigger(); setFailed(false) }} />
+          <input type='range' min={distriConfig[distr].params[key].min} max={distriConfig[distr].params[key].max} step={distriConfig[distr].params[key].step} className="w-48" name={key} value={params[key]} onChange={e => setParams({ ...params, [key]: parseFloat(e.target.value) })} onMouseUp={() => { toggleTrigger(); setFailed(false) }} />
         </div>
       </div>
       )}
     </div>}
-    {specifyParams && <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); setFailed(false); toggleTrigger() }}>
+    {specifyParams && <form className="flex flex-col gap-3" onSubmit={e => {
+      e.preventDefault()
+      setFailed(false)
+      setParams(Object.fromEntries(
+        Object.entries(params).map(([key, value]) => [key, parseFloat(value)])
+      ))
+      toggleTrigger()
+    }}>
       <div className="flex flex-wrap gap-3">
         {Object.keys(params).map(key => <div key={key}>
           <div className='flex items-center gap-2'>
             <InlineMath math={`${distriConfig[distr].params[key].label} = `} />
-            <input className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => setParams({ ...params, [key]: e.target.value })} required />
+            <input className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => {
+              setParams({ ...params, [key]: e.target.value })
+            }} required />
           </div>
         </div>
         )}</div>

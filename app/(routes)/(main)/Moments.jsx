@@ -7,12 +7,14 @@ export default function Moments() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [moments, setMoments] = useState({ mean: 0, variance: 1, skewness: 0, kurtosis: 0 })
   useEffect(() => {
-    let formData = new FormData();
-    for (const key in params) formData.append(key, params[key])
-    formData.append('distr', distr)
-
+    const data = {
+      distr: { 
+        name: distr, 
+        params: params
+      }
+    }
     async function update() {
-      const moments = await getMoments(formData)
+      const moments = await getMoments(data)
       if (moments) setMoments(moments)
       else setFailed(true)
     }

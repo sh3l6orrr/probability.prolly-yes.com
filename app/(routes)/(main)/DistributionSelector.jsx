@@ -16,7 +16,6 @@ export default function DistributionSelector() {
 
     <div className="h-3"></div>
     <div className="flex flex-col gap-4">
-      <input placeholder="Search..." />
       <div className="flex flex-wrap gap-3">
         {
           Object.keys(distriConfig).map(item => distriConfig[item].type === selectType && <button key={item}

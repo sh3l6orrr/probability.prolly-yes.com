@@ -3,7 +3,7 @@ import { useProbabilityStore } from "./store"
 export default function ShowPlotSelector() {
   const { toggleShowPlot, showPlot, type } = useProbabilityStore()
   return <div className="border-b p-8">
-    <h3>Show Visualizations</h3>
+    <h3>Show Utilities</h3>
     <div className="h-3"></div>
     <div className="flex justify-between">
       <div className="flex flex-wrap gap-3">
