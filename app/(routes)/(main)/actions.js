@@ -60,17 +60,18 @@ export async function getMoments(data) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    cache: 'no-store'
   })
-  let pdf
+  let general
   try {
-    pdf = await res.text()
-    const sanitized = pdf.replace(/NaN/g, '"NaN"').replace(/Infinity/g, '"Infinity"')
-    pdf = JSON.parse(sanitized);
+    general = await res.text()
+    const sanitized = general.replace(/NaN/g, '"NaN"').replace(/-Infinity/g, '"-\\\\infty"').replace(/Infinity/g, '"\\\\infty"')
+    general = JSON.parse(sanitized);
   } catch (error) {
     return null
   }
-  return pdf
+  return general
 }
 
 export async function calcPdf(data) {

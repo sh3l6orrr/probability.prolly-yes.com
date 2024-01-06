@@ -23,7 +23,7 @@ export default function PdfPlot({ pmf }) {
     }
   })
   const [plotSize, setPlotSize] = useState({
-    width: 400,
+    width: 360,
     height: 300
   })
   useEffect(() => {

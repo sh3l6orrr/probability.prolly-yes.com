@@ -14,7 +14,7 @@ export default function CdfPlot() {
   const [val, setVal] = useState({ cdf: '', ppf: '' })
   const [result, setResult] = useState({ cdf: null, ppf: null })
   const [plotSize, setPlotSize] = useState({
-    width: 400,
+    width: 360,
     height: 300
   })
   useEffect(() => {

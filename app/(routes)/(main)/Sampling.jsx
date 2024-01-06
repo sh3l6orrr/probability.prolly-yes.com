@@ -13,7 +13,7 @@ export default function Sampling() {
   const [samples, setSamples] = useState([''])
   const [nSample, setNSample] = useState(50)
   const [plotSize, setPlotSize] = useState({
-    width: 400,
+    width: 360,
     height: 300
   })
   const contentRef = useRef(null)

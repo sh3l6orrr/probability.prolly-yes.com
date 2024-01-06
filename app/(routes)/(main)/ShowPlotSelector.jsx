@@ -8,7 +8,7 @@ export default function ShowPlotSelector() {
     <div className="flex justify-between">
       <div className="flex flex-wrap gap-3">
         <button className={showPlot.includes('moments') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('moments')}>
-          Moments
+          General
         </button>
         <button className={showPlot.includes('pdf') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('pdf')}>
           {type === 'continuous' ? 'PDF' : 'PMF'}
