@@ -98,7 +98,7 @@ export default function CdfPlot() {
         <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
 
       </div>
-      <div>
+      <div className="shrink-0">
         <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function Sampling() {
   return <div>
     <h2>Sampling From the Distribution</h2>
     <div className="visualization">
-      <div className={`flex flex-col gap-5 grow`}>
+      <div className='flex flex-col gap-5 grow'>
         {!specifyN && <div className="flex justify-between">
           <div className='flex flex-wrap gap-2 items-center'>
             <InlineMath math={`n =`} />
@@ -72,10 +72,12 @@ export default function Sampling() {
           }}> Copy </button>
         </div>
 
-        <div ref={contentRef} className='overflow-y-scroll border rounded-2xl p-3 border-gray-300 dark:border-gray-700 '>{samples.join(', ')}</div>
-        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger}/>
+        <div ref={contentRef} className='border rounded-2xl p-3 border-gray-300 dark:border-gray-700 overflow-y-scroll max-h-52'>{samples.join(', ')}</div>
+
+
+        <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
       </div>
-      <div>
+      <div className="shrink-0">
         <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>
