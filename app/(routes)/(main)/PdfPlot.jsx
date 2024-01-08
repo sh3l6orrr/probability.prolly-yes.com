@@ -10,6 +10,7 @@ export default function PdfPlot({ pmf }) {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [thisTrigger, setThisTrigger] = useState(false)
   const [spec, setSpec] = useState({})
+  const [formula, setFormula] = useState('')
   const [val, setVal] = useState('')
   const [result, setResult] = useState(null)
   const [plotRange, setPlotRange] = useState({
@@ -31,7 +32,8 @@ export default function PdfPlot({ pmf }) {
   }, [trigger])
 
   useEffect(() => {
-    const data = {
+
+    let data = {
       distr: {
         name: distr,
         params: params
@@ -39,10 +41,23 @@ export default function PdfPlot({ pmf }) {
       range: plotRange,
       size: plotSize
     }
-
+    if (!pmf) {
+      let sympyParams = {}
+      Object.keys(params).forEach((key) => {
+        const newKey = distriConfig[distr]['sympy']['params'][key] || key;
+        sympyParams[newKey] = params[key];
+      })
+      data['sympy'] = {
+        name: distriConfig[distr]['sympy']['name'],
+        params: sympyParams
+      }
+    }
     async function update() {
       const pdf = pmf ? await showPmf(data) : await showPdf(data)
-      if (pdf) setSpec(pdf)
+      if (pdf) {
+        setSpec(pdf.plot)
+        setFormula(pdf.formula)
+      }
       else setFailed(true)
     }
     update()
@@ -56,16 +71,16 @@ export default function PdfPlot({ pmf }) {
     <div className="visualization">
 
       <div className="flex flex-col gap-5">
-        <div className="flex items-center gap-x-5 flex-wrap">
+        {!pmf && <div className="flex items-center gap-x-5 flex-wrap">
           <h4>Formula</h4>
-          <BlockMath math={distriConfig[distr].pdf} />
+          <BlockMath math={`f(x) = ${formula}`} />
           <button className='button-secondary' onClick={async () => {
-            const textToCopy = distriConfig[distr].pdf
+            const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
-        </div>
+        </div>}
         <div className="flex items-center gap-5 flex-wrap">
-          <h4>Calculate</h4>
+          <h4>Evaluate</h4>
           <form className="flex gap-2 items-center" onSubmit={async e => {
             e.preventDefault()
             const data = {

@@ -13,25 +13,36 @@ export default function CdfPlot() {
   const [thisTrigger, setThisTrigger] = useState(false)
   const [val, setVal] = useState({ cdf: '', ppf: '' })
   const [result, setResult] = useState({ cdf: null, ppf: null })
+  const [formula, setFormula] = useState('')
   const [plotSize, setPlotSize] = useState({
     width: 360,
     height: 300
   })
   useEffect(() => {
-    setResult({ cdf: null, ppf: null })
-  }, [trigger])
-
-  useEffect(() => {
-    const data = {
+    let data = {
       distr: {
         name: distr,
         params: params
       },
       size: plotSize
     }
+
+    let sympyParams = {}
+    Object.keys(params).forEach((key) => {
+      const newKey = distriConfig[distr]['sympy']['params'][key] || key;
+      sympyParams[newKey] = params[key];
+    })
+    data['sympy'] = {
+      name: distriConfig[distr]['sympy']['name'],
+      params: sympyParams
+    }
+
     async function update() {
       const cdf = await showCdf(data)
-      if (cdf) setSpec(cdf)
+      if (cdf) {
+        setSpec(cdf.plot)
+        setFormula(cdf.formula)
+      }
       else setFailed(true)
     }
     update()
@@ -46,14 +57,14 @@ export default function CdfPlot() {
       <div className="flex flex-col gap-3">
         <div className="flex gap-5 items-center">
           <h4>Formula</h4>
-          <BlockMath math={distriConfig[distr].cdf} />
+          <BlockMath math={formula} />
           <button className='button-secondary' onClick={async () => {
-            const textToCopy = distriConfig[distr].cdf
+            const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
         </div>
         <div className="flex items-center gap-5 flex-wrap">
-          <h4>Calculate</h4>
+          <h4>Evaluate</h4>
           <div className="flex flex-col gap-1">
             <form className="flex gap-2 items-center" onSubmit={async e => {
               e.preventDefault()
@@ -91,7 +102,7 @@ export default function CdfPlot() {
               <button type='submit' className="button-secondary">Apply</button>
               {result.ppf && <InlineMath math={`x = ${result.ppf.y}`} />}
             </form>
-            
+
           </div>
         </div>
         <div className="grow" />

@@ -6,7 +6,7 @@ import { InlineMath } from 'react-katex'
 export default function Moments() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [moments, setMoments] = useState({ mean: 0, variance: 1, skewness: 0, kurtosis: 0 })
-  const [support, setSupport] = useState(['-\\infty', '\\infty'])
+  const [support, setSupport] = useState('')
   useEffect(() => {
     const data = {
       distr: {
@@ -32,7 +32,7 @@ export default function Moments() {
       <div className="flex flex-col gap-5">
         <div className="flex flex-wrap gap-x-8 gap-y-3 items-center">
           <h4>Support</h4>
-          <InlineMath math={`${support[0]}, ${support[1]}`} />
+          <InlineMath math={support.replace(/inf/g, '\\infty')} />
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-3 items-center">
           <h4>Moments</h4>

@@ -11,14 +11,21 @@ const distriConfig = {
         default: 0,
         min: -10,
         max: 10,
-        step: 1
+        step: 1,
       },
       scale: {
         label: '\\sigma',
         default: 1,
         min: 0,
         max: 10,
-        step: 1
+        step: 1,
+      }
+    },
+    sympy: {
+      name: 'Normal',
+      params: {
+        loc: 'mean',
+        scale: 'std'
       }
     }
   },
