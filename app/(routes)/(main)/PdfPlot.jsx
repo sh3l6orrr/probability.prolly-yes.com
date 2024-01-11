@@ -41,17 +41,17 @@ export default function PdfPlot({ pmf }) {
       range: plotRange,
       size: plotSize
     }
-    if (!pmf) {
-      let sympyParams = {}
-      Object.keys(params).forEach((key) => {
-        const newKey = distriConfig[distr]['sympy']['params'][key] || key;
-        sympyParams[newKey] = params[key];
-      })
-      data['sympy'] = {
-        name: distriConfig[distr]['sympy']['name'],
-        params: sympyParams
-      }
+
+    let sympyParams = {}
+    Object.keys(params).forEach((key) => {
+      const newKey = distriConfig[distr]['sympy']['params'][key] || key;
+      sympyParams[newKey] = params[key];
+    })
+    data['sympy'] = {
+      name: distriConfig[distr]['sympy']['name'],
+      params: sympyParams
     }
+
     async function update() {
       const pdf = pmf ? await showPmf(data) : await showPdf(data)
       if (pdf) {
@@ -71,14 +71,17 @@ export default function PdfPlot({ pmf }) {
     <div className="visualization">
 
       <div className="flex flex-col gap-5">
-        {!pmf && <div className="flex items-center gap-x-5 flex-wrap">
+        <div className="flex items-center gap-x-5 flex-wrap">
           <h4>Formula</h4>
-          <BlockMath math={`f(x) = ${formula}`} />
+          <div className="overflow-y-scroll max-w-96">
+            <BlockMath math={formula.length < 200 && formula !== 'timeout' ? `f(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
+          </div>
+
           <button className='button-secondary' onClick={async () => {
             const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
-        </div>}
+        </div>
         <div className="flex items-center gap-5 flex-wrap">
           <h4>Evaluate</h4>
           <form className="flex gap-2 items-center" onSubmit={async e => {
@@ -93,7 +96,7 @@ export default function PdfPlot({ pmf }) {
             const res = await calcPdf(data)
             if (res) setResult({ x: val, y: res.val })
           }}>
-            <InlineMath math={'x = '} />
+            <InlineMath math={pmf ? 'k = ' : 'x = '} />
             <input type='number' step='0.001' className="w-16" name='val' value={val}
               onChange={e => setVal(e.target.value)} required />
             <button type='submit' className="button-secondary">Apply</button>

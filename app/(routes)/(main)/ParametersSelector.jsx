@@ -6,7 +6,6 @@ import distriConfig from "./distrConfig"
 export default function ParametersSelector() {
   const { distr, params, setParams, toggleTrigger, setFailed } = useProbabilityStore()
   const [specifyParams, setSpecifyParams] = useState(false)
-  const [tempParams, setTempParams] = useState(params)
 
 
   return <div className="border-b p-8">
@@ -37,7 +36,7 @@ export default function ParametersSelector() {
         {Object.keys(params).map(key => <div key={key}>
           <div className='flex items-center gap-2'>
             <InlineMath math={`${distriConfig[distr].params[key].label} = `} />
-            <input type="number" step='0.001' className="w-16" name={key} value={params[key]} maxLength={6} onChange={e => {
+            <input type="number" step='0.001' className="w-16" name={key} value={params[key]} maxLength={4} onChange={e => {
               setParams({ ...params, [key]: e.target.value })
             }} required />
           </div>

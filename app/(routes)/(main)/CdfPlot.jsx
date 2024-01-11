@@ -7,7 +7,7 @@ import { Vega } from "react-vega";
 import PlotSizeToggler from "./PlotSizeToggler";
 import { calcCdf, calcPpf } from "./actions";
 
-export default function CdfPlot() {
+export default function CdfPlot({ pmf }) {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [spec, setSpec] = useState({})
   const [thisTrigger, setThisTrigger] = useState(false)
@@ -26,16 +26,18 @@ export default function CdfPlot() {
       },
       size: plotSize
     }
-
-    let sympyParams = {}
-    Object.keys(params).forEach((key) => {
-      const newKey = distriConfig[distr]['sympy']['params'][key] || key;
-      sympyParams[newKey] = params[key];
-    })
-    data['sympy'] = {
-      name: distriConfig[distr]['sympy']['name'],
-      params: sympyParams
+    if (!pmf) {
+      let sympyParams = {}
+      Object.keys(params).forEach((key) => {
+        const newKey = distriConfig[distr]['sympy']['params'][key] || key;
+        sympyParams[newKey] = params[key];
+      })
+      data['sympy'] = {
+        name: distriConfig[distr]['sympy']['name'],
+        params: sympyParams
+      }
     }
+
 
     async function update() {
       const cdf = await showCdf(data)
@@ -55,14 +57,17 @@ export default function CdfPlot() {
     <div className="visualization">
 
       <div className="flex flex-col gap-3">
-        <div className="flex gap-5 items-center">
+        {!pmf && <div className="flex gap-5 items-center">
           <h4>Formula</h4>
-          <BlockMath math={formula} />
+          <div className="overflow-y-scroll max-w-96 gap-x-5 flex-wrap">
+            <BlockMath math={formula.length < 200 && formula !== 'timeout' ? `F(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
+          </div>
+
           <button className='button-secondary' onClick={async () => {
             const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
           }}> Copy </button>
-        </div>
+        </div>}
         <div className="flex items-center gap-5 flex-wrap">
           <h4>Evaluate</h4>
           <div className="flex flex-col gap-1">
@@ -78,7 +83,7 @@ export default function CdfPlot() {
               const res = await calcCdf(data)
               if (res) setResult({ ...result, cdf: { x: val.cdf, y: res.val } })
             }}>
-              <InlineMath math={'x = '} />
+              <InlineMath math={pmf ? 'k = ' : 'x ='} />
               <input type='number' step='0.001' className="w-16" name='cdf' value={val.cdf}
                 onChange={e => setVal({ ...val, cdf: e.target.value })} required />
               <button type='submit' className="button-secondary">Apply</button>
@@ -96,7 +101,7 @@ export default function CdfPlot() {
               const res = await calcPpf(data)
               if (res) setResult({ ...result, ppf: { x: val.ppf, y: res.val } })
             }}>
-              <InlineMath math={'F(x) = '} />
+              <InlineMath math={pmf ? 'F(k) = ' : 'F(x) = '} />
               <input type='number' step='0.001' className="w-16" name='ppf' value={val.ppf}
                 onChange={e => setVal({ ...val, ppf: e.target.value })} required />
               <button type='submit' className="button-secondary">Apply</button>

@@ -27,7 +27,7 @@ export default function Moments() {
   }, [trigger])
 
   return <div>
-    <h2>General</h2>
+    <h2>Attributes</h2>
     <div className="visualization">
       <div className="flex flex-col gap-5">
         <div className="flex flex-wrap gap-x-8 gap-y-3 items-center">
