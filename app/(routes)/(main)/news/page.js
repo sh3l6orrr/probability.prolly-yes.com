@@ -15,8 +15,8 @@ export default function Page() {
 
 const news = [
   {
-    heading: 'V0.0',
-    time: '2024-01-02',
+    heading: 'V0.1',
+    time: '2024-01-11',
     content: 'Beta version.'
   }
 ]
