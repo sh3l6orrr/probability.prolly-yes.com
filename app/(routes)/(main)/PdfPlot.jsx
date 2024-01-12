@@ -13,6 +13,7 @@ export default function PdfPlot({ pmf }) {
   const [formula, setFormula] = useState('')
   const [val, setVal] = useState('')
   const [result, setResult] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [plotRange, setPlotRange] = useState({
     x: {
       min: -10,
@@ -33,7 +34,7 @@ export default function PdfPlot({ pmf }) {
   }, [trigger])
 
   useEffect(() => {
-
+    
     let data = {
       distr: {
         name: distr,
@@ -54,6 +55,7 @@ export default function PdfPlot({ pmf }) {
     }
 
     async function update() {
+      setLoading(true)
       const pdf = pmf ? await showPmf(data) : await showPdf(data)
       const formula = await showPdfFormula(data)
       if (pdf) {
@@ -61,15 +63,17 @@ export default function PdfPlot({ pmf }) {
         setFormula(formula)
       }
       else setFailed(true)
+      setLoading(false)
     }
     update()
+    
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger, thisTrigger])
 
 
   return <div>
-    <h2>{pmf ? 'Probability Mass Function (PMF)' : 'Probability Density Function (PDF)'}</h2>
+    <h2>{pmf ? 'Probability Mass Function (PMF)' : 'Probability Density Function (PDF)'} {loading && <i>- Loading</i>}</h2>
     <div className="visualization">
 
       <div className="flex flex-col gap-5">

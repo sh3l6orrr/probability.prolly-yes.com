@@ -7,7 +7,9 @@ export default function Moments() {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
   const [moments, setMoments] = useState({ mean: 0, variance: 1, skewness: 0, kurtosis: 0 })
   const [support, setSupport] = useState('')
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
+    
     const data = {
       distr: {
         name: distr,
@@ -15,19 +17,22 @@ export default function Moments() {
       }
     }
     async function update() {
+      setLoading(true)
       const moments = await getMoments(data)
       if (moments) {
         setMoments(moments.moments)
         setSupport(moments.support)
       }
       else setFailed(true)
+      setLoading(false)
     }
     update()
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger])
 
   return <div>
-    <h2>Attributes</h2>
+    <h2>Attributes {loading && <i>- Loading</i>}</h2>
     <div className="visualization">
       <div className="flex flex-col gap-5">
         <div className="flex flex-wrap gap-x-8 gap-y-3 items-center">

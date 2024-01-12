@@ -14,11 +14,13 @@ export default function CdfPlot({ pmf }) {
   const [val, setVal] = useState({ cdf: '', ppf: '' })
   const [result, setResult] = useState({ cdf: null, ppf: null })
   const [formula, setFormula] = useState('')
+  const [loading, setLoading] = useState(true)
   const [plotSize, setPlotSize] = useState({
     width: 360,
     height: 300
   })
   useEffect(() => {
+    
     let data = {
       distr: {
         name: distr,
@@ -39,6 +41,7 @@ export default function CdfPlot({ pmf }) {
     }
 
     async function update() {
+      setLoading(true)
       const cdf = await showCdf(data)
       const formula = await showCdfFormula(data)
       if (cdf) {
@@ -46,14 +49,16 @@ export default function CdfPlot({ pmf }) {
         setFormula(formula)
       }
       else setFailed(true)
+      setLoading(false)
     }
     update()
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger, thisTrigger])
 
 
   return <div>
-    <h2>Cumulative Distribution Function (CDF)</h2>
+    <h2>Cumulative Distribution Function (CDF) {loading && <i>- Loading</i>} </h2>
     <div className="visualization">
 
       <div className="flex flex-col gap-3">
@@ -114,7 +119,7 @@ export default function CdfPlot({ pmf }) {
         <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
 
       </div>
-      <div className="shrink-0">
+      <div className="shrink-0 overflow-scroll">
         <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>
