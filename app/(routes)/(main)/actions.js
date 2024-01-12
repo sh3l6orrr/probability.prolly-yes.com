@@ -68,6 +68,22 @@ export async function showPdfFormula(data) {
   }
   return pdf
 }
+export async function showPmfFormula(data) {
+  const res = await fetch(url + '/probability/pmf/formula', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let pdf
+  try {
+    pdf = await res.text()
+  } catch (error) {
+    return null
+  }
+  return pdf
+}
 
 export async function showCdfFormula(data) {
   const res = await fetch(url + '/probability/cdf/formula', {

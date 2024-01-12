@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store";
-import { calcPdf, showPdf, showPdfFormula, showPmf } from "./actions";
+import { calcPdf, showPdf, showPdfFormula, showPmf, showPmfFormula} from "./actions";
 import { BlockMath, InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig";
 import { Vega } from 'react-vega';
@@ -54,7 +54,7 @@ export default function PdfPlot({ pmf }) {
     async function update() {
       setLoading(true)
       const pdf = pmf ? await showPmf(data) : await showPdf(data)
-      const formula = await showPdfFormula(data)
+      const formula = pmf ? await showPmfFormula(data) : await showPdfFormula(data) 
       if (pdf) {
         setSpec(pdf)
         setFormula(formula)
