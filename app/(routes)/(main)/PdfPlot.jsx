@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store";
-import { calcPdf, showPdf, showPmf } from "./actions";
+import { calcPdf, showPdf, showPdfFormula, showPmf } from "./actions";
 import { BlockMath, InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig";
 import { Vega } from 'react-vega';
@@ -27,6 +27,7 @@ export default function PdfPlot({ pmf }) {
     width: 360,
     height: 300
   })
+
   useEffect(() => {
     setResult(null)
   }, [trigger])
@@ -54,9 +55,10 @@ export default function PdfPlot({ pmf }) {
 
     async function update() {
       const pdf = pmf ? await showPmf(data) : await showPdf(data)
+      const formula = await showPdfFormula(data)
       if (pdf) {
-        setSpec(pdf.plot)
-        setFormula(pdf.formula)
+        setSpec(pdf)
+        setFormula(formula)
       }
       else setFailed(true)
     }
@@ -145,7 +147,7 @@ export default function PdfPlot({ pmf }) {
         <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
       </div>
 
-      <div className="shrink-0">
+      <div className="shrink-0 overflow-scroll">
         <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>

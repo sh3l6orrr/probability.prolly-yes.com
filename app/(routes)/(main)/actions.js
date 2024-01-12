@@ -9,7 +9,6 @@ export async function showPdf(data) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data),
-    cache: 'no-store'
   })
   let pdf
   try {
@@ -53,6 +52,39 @@ export async function showCdf(data) {
   }
   return cdf
 }
+export async function showPdfFormula(data) {
+  const res = await fetch(url + '/probability/pdf/formula', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let pdf
+  try {
+    pdf = await res.text()
+  } catch (error) {
+    return null
+  }
+  return pdf
+}
+
+export async function showCdfFormula(data) {
+  const res = await fetch(url + '/probability/cdf/formula', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  let cdf
+  try {
+    cdf = await res.text()
+  } catch (error) {
+    return null
+  }
+  return cdf
+}
 
 export async function getMoments(data) {
   const res = await fetch(url + '/probability/moments', {
@@ -60,8 +92,7 @@ export async function getMoments(data) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data),
-    cache: 'no-store'
+    body: JSON.stringify(data)
   })
   let general
   try {

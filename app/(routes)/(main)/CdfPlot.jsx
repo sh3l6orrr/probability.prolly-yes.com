@@ -1,4 +1,4 @@
-import { showCdf } from "./actions";
+import { showCdf, showCdfFormula } from "./actions";
 import distriConfig from "./distrConfig";
 import { useProbabilityStore } from "./store";
 import { useEffect, useState } from "react";
@@ -38,12 +38,12 @@ export default function CdfPlot({ pmf }) {
       }
     }
 
-
     async function update() {
       const cdf = await showCdf(data)
+      const formula = await showCdfFormula(data)
       if (cdf) {
-        setSpec(cdf.plot)
-        setFormula(cdf.formula)
+        setSpec(cdf)
+        setFormula(formula)
       }
       else setFailed(true)
     }
