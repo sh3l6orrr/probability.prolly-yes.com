@@ -77,7 +77,7 @@ export default function Sampling() {
 
         <PlotSizeToggler setPlotSize={setPlotSize} thisTrigger={thisTrigger} plotSize={plotSize} setThisTrigger={setThisTrigger} />
       </div>
-      <div className="shrink-0">
+      <div className="shrink-0 overflow-scroll">
         <Vega className='plot' spec={spec} actions={false} />
       </div>
     </div>

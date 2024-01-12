@@ -7,7 +7,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white dark:bg-black">
       <body>{children}</body>
     </html>
   )
