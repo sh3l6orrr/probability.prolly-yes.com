@@ -170,16 +170,16 @@ const distriConfig = {
     params: {
       dfn: {
         label: 'd_1',
-        default: 5,
+        default: 2,
         min: 1,
-        max: 10,
+        max: 5,
         step: 1
       },
       dfd: {
         label: 'd_2',
-        default: 10,
+        default: 5,
         min: 1,
-        max: 10,
+        max: 5,
         step: 1
       }
     },

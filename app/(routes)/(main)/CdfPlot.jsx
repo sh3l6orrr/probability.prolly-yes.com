@@ -15,12 +15,19 @@ export default function CdfPlot({ pmf }) {
   const [result, setResult] = useState({ cdf: null, ppf: null })
   const [formula, setFormula] = useState('')
   const [loading, setLoading] = useState(true)
-  const [plotSize, setPlotSize] = useState({
-    width: 360,
-    height: 300
-  })
+  const [plotSize, setPlotSize] = useState({ width: 360, height: 300 })
+  const [copied, setCopied] = useState(false)
   useEffect(() => {
-    
+    if (copied) {
+      const timeoutId = setTimeout(() => {
+        setCopied(false);
+      }, 3000)
+      return () => clearTimeout(timeoutId);
+    }
+
+  }, [copied])
+  useEffect(() => {
+
     let data = {
       distr: {
         name: distr,
@@ -52,7 +59,7 @@ export default function CdfPlot({ pmf }) {
       setLoading(false)
     }
     update()
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger, thisTrigger])
 
@@ -62,16 +69,17 @@ export default function CdfPlot({ pmf }) {
     <div className="visualization">
 
       <div className="flex flex-col gap-3">
-        {!pmf && <div className="flex gap-5 items-center">
+        {!pmf && <div className="flex gap-5 items-center flex-wrap">
           <h4>Formula</h4>
-          <div className="overflow-y-scroll max-w-96 gap-x-5 flex-wrap">
+          <div className="overflow-scroll max-w-96">
             <BlockMath math={formula.length < 200 && formula !== 'timeout' ? `F(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
           </div>
 
           <button className='button-secondary' onClick={async () => {
+            setCopied(true)
             const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
-          }}> Copy </button>
+          }}> {copied ? '✅' : 'Copy'} </button>
         </div>}
         <div className="flex items-center gap-5 flex-wrap">
           <h4>Evaluate</h4>

@@ -14,27 +14,24 @@ export default function PdfPlot({ pmf }) {
   const [val, setVal] = useState('')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [plotRange, setPlotRange] = useState({
-    x: {
-      min: -10,
-      max: 10
-    },
-    y: {
-      min: 0,
-      max: 1
+  const [plotRange, setPlotRange] = useState({ x: { min: -10, max: 10 }, y: { min: 0, max: 1 } })
+  const [plotSize, setPlotSize] = useState({ width: 360, height: 300 })
+  const [copied, setCopied] = useState(false)
+  useEffect(() => {
+    if (copied) {
+      const timeoutId = setTimeout(() => {
+        setCopied(false);
+      }, 3000)
+      return () => clearTimeout(timeoutId);
     }
-  })
-  const [plotSize, setPlotSize] = useState({
-    width: 360,
-    height: 300
-  })
 
+  }, [copied])
   useEffect(() => {
     setResult(null)
   }, [trigger])
 
   useEffect(() => {
-    
+
     let data = {
       distr: {
         name: distr,
@@ -66,7 +63,7 @@ export default function PdfPlot({ pmf }) {
       setLoading(false)
     }
     update()
-    
+
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger, thisTrigger])
@@ -84,9 +81,10 @@ export default function PdfPlot({ pmf }) {
           </div>
 
           <button className='button-secondary' onClick={async () => {
+            setCopied(true)
             const textToCopy = formula
             await navigator.clipboard.writeText(textToCopy)
-          }}> Copy </button>
+          }}> {copied ? '✅' : 'Copy'} </button>
         </div>
         <div className="flex items-center gap-5 flex-wrap">
           <h4>Evaluate</h4>
@@ -144,7 +142,7 @@ export default function PdfPlot({ pmf }) {
                 onMouseUp={e => setThisTrigger(!thisTrigger)} required />
             </div>}
           </div>
-          <button type='submit' className="button-secondary">Apply</button>
+          <button type='submit' className="button-secondary md:hidden">Apply</button>
         </form>
 
 

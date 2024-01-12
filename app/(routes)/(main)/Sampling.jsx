@@ -12,12 +12,18 @@ export default function Sampling() {
   const [thisTrigger, setThisTrigger] = useState(false)
   const [samples, setSamples] = useState([''])
   const [nSample, setNSample] = useState(50)
-  const [plotSize, setPlotSize] = useState({
-    width: 360,
-    height: 300
-  })
+  const [plotSize, setPlotSize] = useState({ width: 360, height: 300 })
   const contentRef = useRef(null)
+  const [copied, setCopied] = useState(false)
+  useEffect(() => {
+    if (copied) {
+      const timeoutId = setTimeout(() => {
+        setCopied(false);
+      }, 3000)
+      return () => clearTimeout(timeoutId);
+    }
 
+  }, [copied])
   useEffect(() => {
     const data = {
       distr: {
@@ -67,9 +73,10 @@ export default function Sampling() {
             Samples generated:
           </div>
           <button className='button-secondary' onClick={async () => {
+            setCopied(true)
             const textToCopy = contentRef.current.innerText
             await navigator.clipboard.writeText(textToCopy)
-          }}> Copy </button>
+          }}> {copied ? '✅' : 'Copy'}  </button>
         </div>
 
         <div ref={contentRef} className='border rounded-2xl p-3 border-gray-300 dark:border-gray-700 overflow-y-scroll max-h-52'>{samples.join(', ')}</div>
