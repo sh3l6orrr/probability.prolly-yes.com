@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <div className="grow" />
       <div className="flex gap-6">
         <Link href='/news'><span className="text-xl">News</span></Link>
-        <Link href='/news'><span className="text-xl">Github</span></Link>
+        <Link href='https://github.com/sh3l6orrr/prolly'><span className="text-xl">Github</span></Link>
         <Link href='/about'><span className="text-xl">About</span></Link>
       </div>
       <div className="w-8" />
