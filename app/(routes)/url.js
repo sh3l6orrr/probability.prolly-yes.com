@@ -1,2 +1,2 @@
-const url = 'http://localhost:5001'
+const url = 'https://api.prolly-yes.com'
 export default url
