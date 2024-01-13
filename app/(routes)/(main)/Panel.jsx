@@ -1,3 +1,5 @@
+'use client'
+
 import distriConfig from "./distrConfig"
 import { useProbabilityStore } from "./store"
 import { BlockMath } from 'react-katex'

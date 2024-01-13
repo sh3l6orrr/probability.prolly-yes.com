@@ -1,3 +1,5 @@
+'use client'
+
 import { useProbabilityStore } from "./store"
 
 export default function ShowPlotSelector() {

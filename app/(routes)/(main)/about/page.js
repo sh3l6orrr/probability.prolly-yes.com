@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "About ProllyYes"
+}
+
 export default function Page() {
   return <>
   <main className="p-8 gap-4 flex flex-col">
