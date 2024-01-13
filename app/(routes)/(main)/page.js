@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "ProllyYes: Probability Distributions Visualized",
+  title: "ProllyYes: Probability Distribution Calculator & Visualization",
   description: "ProllyYes: Best online tools for probability and statistics.",
 }
 
@@ -22,7 +22,7 @@ export default function Home() {
       </aside>
       <div className="p-8" >
         <h1 className="text-sm dark:text-gray-400 text-gray-600">
-          ProllyYes is the best free online tool for visualizations of probability distributions and statistics.
+          ProllyYes is the best free online tool for calculation and visualization of probability distributions and statistics.
         </h1>
       </div >
       <div className="grow" />
