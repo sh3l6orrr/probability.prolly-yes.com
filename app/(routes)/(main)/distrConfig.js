@@ -7,8 +7,8 @@ const distriConfig = {
       loc: {
         label: '\\mu',
         default: 0,
-        min: -10,
-        max: 10,
+        min: -5,
+        max: 5,
         step: 1,
       },
       scale: {
@@ -34,7 +34,7 @@ const distriConfig = {
     params: {
       df: {
         label: '\\nu',
-        default: 10,
+        default: 5,
         min: 1,
         max: 30,
         step: 1
@@ -82,7 +82,7 @@ const distriConfig = {
     params: {
       mu: {
         label: '\\mu',
-        default: 3,
+        default: 1,
         min: 1,
         max: 10,
         step: 1
@@ -102,10 +102,10 @@ const distriConfig = {
     params: {
       rate: {
         label: '\\lambda',
-        default: 0.5,
-        min: 0.1,
-        max: 2,
-        step: 0.1
+        default: 1,
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -150,7 +150,7 @@ const distriConfig = {
     params: {
       df: {
         label: 'k',
-        default: 3,
+        default: 1,
         min: 1,
         max: 10,
         step: 1
@@ -172,14 +172,14 @@ const distriConfig = {
         label: 'd_1',
         default: 2,
         min: 1,
-        max: 5,
+        max: 10,
         step: 1
       },
       dfd: {
         label: 'd_2',
-        default: 5,
+        default: 3,
         min: 1,
-        max: 5,
+        max: 10,
         step: 1
       }
     },
@@ -205,7 +205,7 @@ const distriConfig = {
       },
       b: {
         label: '\\beta',
-        default: 5,
+        default: 3,
         min: 1,
         max: 10,
         step: 1
@@ -233,10 +233,10 @@ const distriConfig = {
       },
       theta: {
         label: '\\theta',
-        default: 1,
-        min: 0.1,
-        max: 2,
-        step: 0.1
+        default: 3,
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -254,9 +254,9 @@ const distriConfig = {
     params: {
       p: {
         label: 'p',
-        default: 0.2,
+        default: 0.3,
         min: 0.01,
-        max: 0.99,
+        max: 1,
         step: 0.01
       }
     },
@@ -294,9 +294,9 @@ const distriConfig = {
     params: {
       n: {
         label: 'n',
-        default: 2,
+        default: 3,
         min: 1,
-        max: 10,
+        max: 20,
         step: 1
       },
       p: {
@@ -323,9 +323,9 @@ const distriConfig = {
       scale: {
         label: '\\sigma',
         default: 1,
-        min: 0.1,
-        max: 5,
-        step: 0.1
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -340,19 +340,19 @@ const distriConfig = {
     label: 'Pareto',
     type: 'continuous',
     params: {
+      scale: {
+        label: 'x_m',
+        default: 3,
+        min: 1,
+        max: 10,
+        step: 1
+      },
       b: {
         label: '\\alpha',
         default: 2,
         min: 1,
-        max: 5,
-        step: 0.5
-      },
-      scale: {
-        label: 'x_m',
-        default: 3,
-        min: 0.1,
-        max: 5,
-        step: 0.1
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -360,6 +360,34 @@ const distriConfig = {
       params: {
         b: 'alpha',
         scale: 'xm'
+      }
+    }
+  },
+  weibull_min: {
+    name: 'Weibull',
+    label: 'Weibull',
+    type: 'continuous',
+    params: {
+      scale: {
+        label: '\\lambda',
+        default: 3,
+        min: 1,
+        max: 10,
+        step: 1
+      },
+      c: {
+        label: 'k',
+        default: 3,
+        min: 1,
+        max: 10,
+        step: 1
+      }
+    },
+    sympy: {
+      name: 'Weibull',
+      params: {
+        scale: 'alpha',
+        c: 'beta'
       }
     }
   },
@@ -378,9 +406,9 @@ const distriConfig = {
       scale: {
         label: '\\gamma',
         default: 1,
-        min: 0.1,
-        max: 5,
-        step: 0.1
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -406,9 +434,9 @@ const distriConfig = {
       scale: {
         label: 's',
         default: 1,
-        min: 0.1,
-        max: 5,
-        step: 0.1
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -434,9 +462,9 @@ const distriConfig = {
       s: {
         label: '\\sigma',
         default: 1,
-        min: 0.1,
-        max: 2,
-        step: 0.1
+        min: 1,
+        max: 10,
+        step: 1
       }
     },
     sympy: {
@@ -446,7 +474,72 @@ const distriConfig = {
         s: 'std'
       }
     }
-  }
+  },
+  hypergeom: {
+    name: 'HyperGeometric',
+    label: 'HyperGeom',
+    type: 'discrete',
+    params: {
+      M: {
+        label: 'N',
+        default: 20,
+        min: 10,
+        max: 50,
+        step: 1
+      },
+
+      n: {
+        label: 'K',
+        default: 5,
+        min: 10,
+        max: 50,
+        step: 1
+      },
+      N: {
+        label: 'n',
+        default: 10,
+        min: 10,
+        max: 50,
+        step: 1
+      }
+    },
+    sympy: {
+      name: 'HyperGeometric',
+      params: {
+        M: 'N',
+        N: 'n',
+        n: 'm'
+      }
+    }
+  },
+  laplace: {
+    name: 'Laplace',
+    label: 'Laplace',
+    type: 'continuous',
+    params: {
+      loc: {
+        label: '\\mu',
+        default: 0,
+        min: -5,
+        max: 5,
+        step: 1
+      },
+      scale: {
+        label: 'b',
+        default: 1,
+        min: 1,
+        max: 10,
+        step: 1
+      }
+    },
+    sympy: {
+      name: 'Laplace',
+      params: {
+        loc: 'mu',
+        scale: 'b'
+      }
+    }
+  },
 }
 
 
