@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "News"
+  title: "ProllyYes News"
 }
 
 export default function Page() {
@@ -19,7 +19,7 @@ export default function Page() {
 
 const news = [
   {
-    heading: 'V0.1',
+    heading: 'V1.0',
     time: '2024-01-11',
     content: 'Beta version.'
   }
