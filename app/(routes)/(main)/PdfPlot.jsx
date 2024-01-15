@@ -117,13 +117,13 @@ export default function PdfPlot({ pmf }) {
             <div className="flex items-center">
               X
               <div className="w-5" />
-              <input type='range' min='-10' max='10' className="w-16" value={plotRange.x.min}
+              <input type='range' min='-30' max='30' className="w-16" value={plotRange.x.min}
                 onChange={e => setPlotRange({ ...plotRange, x: { ...plotRange.x, min: e.target.value } })}
                 onMouseUp={e => setThisTrigger(!thisTrigger)} required />
               <div className="grow text-center">
                 {plotRange.x.min} to {plotRange.x.max}
               </div>
-              <input type='range' min='-10' max='10' className="w-16" value={plotRange.x.max}
+              <input type='range' min='-30' max='30' className="w-16" value={plotRange.x.max}
                 onChange={e => setPlotRange({ ...plotRange, x: { ...plotRange.x, max: e.target.value } })}
                 onMouseUp={e => setThisTrigger(!thisTrigger)} required />
             </div>
