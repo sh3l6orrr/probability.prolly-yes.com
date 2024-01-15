@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://prolly-yes/sitemap.xml
+Sitemap: https://probability.prolly-yes.com/sitemap.xml
