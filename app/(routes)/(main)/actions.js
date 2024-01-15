@@ -137,6 +137,22 @@ export async function calcPdf(data) {
   }
   return val
 }
+export async function calcPmf(data) {
+  const res = await fetch(url + '/probability/calc_pmf', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  let val
+  try {
+    val = await res.json()
+  } catch (error) {
+    return null
+  }
+  return val
+}
 export async function calcCdf(data) {
   const res = await fetch(url + '/probability/calc_cdf', {
     method: 'POST',

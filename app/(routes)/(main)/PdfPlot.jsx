@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store";
-import { calcPdf, showPdf, showPdfFormula, showPmf, showPmfFormula} from "./actions";
+import { calcPdf, calcPmf, showPdf, showPdfFormula, showPmf, showPmfFormula} from "./actions";
 import { BlockMath, InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig";
 import { Vega } from 'react-vega';
@@ -77,7 +77,7 @@ export default function PdfPlot({ pmf }) {
         <div className="flex items-center gap-x-5 flex-wrap">
           <h4>Formula</h4>
           <div className="overflow-y-scroll max-w-96">
-            <BlockMath math={formula.length < 200 && formula !== 'timeout' ? `f(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
+            <BlockMath math={formula.length < 250 && formula !== 'timeout' ? `f(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
           </div>
 
           <button className='button-secondary' onClick={async () => {
@@ -97,7 +97,7 @@ export default function PdfPlot({ pmf }) {
               },
               x: parseFloat(val)
             }
-            const res = await calcPdf(data)
+            const res = pmf ? await calcPmf(data) : await calcPdf(data)
             if (res) setResult({ x: val, y: res.val })
           }}>
             <InlineMath math={pmf ? 'k = ' : 'x = '} />

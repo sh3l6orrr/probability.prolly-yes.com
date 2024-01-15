@@ -54,10 +54,10 @@ const distriConfig = {
     params: {
       n: {
         label: 'n',
-        default: 10,
-        min: 10,
-        max: 50,
-        step: 5
+        default: 5,
+        min: 1,
+        max: 20,
+        step: 1
       },
       p: {
         label: 'p',
@@ -315,26 +315,6 @@ const distriConfig = {
       }
     }
   },
-  rayleigh: {
-    name: 'Rayleigh',
-    label: 'Rayleigh',
-    type: 'continuous',
-    params: {
-      scale: {
-        label: '\\sigma',
-        default: 1,
-        min: 1,
-        max: 10,
-        step: 1
-      }
-    },
-    sympy: {
-      name: 'Rayleigh',
-      params: {
-        scale: 'sigma'
-      }
-    }
-  },
   pareto: {
     name: 'Pareto',
     label: 'Pareto',
@@ -482,29 +462,29 @@ const distriConfig = {
     params: {
       M: {
         label: 'N',
-        default: 20,
-        min: 10,
-        max: 50,
+        default: 5,
+        min: 1,
+        max: 20,
         step: 1
       },
 
       n: {
         label: 'K',
-        default: 5,
-        min: 10,
-        max: 50,
+        default: 3,
+        min: 1,
+        max: 20,
         step: 1
       },
       N: {
         label: 'n',
-        default: 10,
-        min: 10,
-        max: 50,
+        default: 2,
+        min: 1,
+        max: 20,
         step: 1
       }
     },
     sympy: {
-      name: 'HyperGeometric',
+      name: 'Hypergeometric',
       params: {
         M: 'N',
         N: 'n',
@@ -537,6 +517,26 @@ const distriConfig = {
       params: {
         loc: 'mu',
         scale: 'b'
+      }
+    }
+  },
+  rayleigh: {
+    name: 'Rayleigh',
+    label: 'Rayleigh',
+    type: 'continuous',
+    params: {
+      scale: {
+        label: '\\sigma',
+        default: 1,
+        min: 1,
+        max: 10,
+        step: 1
+      }
+    },
+    sympy: {
+      name: 'Rayleigh',
+      params: {
+        scale: 'sigma'
       }
     }
   },
