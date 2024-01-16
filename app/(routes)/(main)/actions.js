@@ -1,7 +1,7 @@
 'use server'
 
-// const url = 'https://api.prolly-yes.com'
-const url = 'http://localhost:5001'
+const url = 'https://api.prolly-yes.com'
+// const url = 'http://localhost:5001'
 
 export async function fetchProbability(data, route) {
   const res = await fetch(url + `/probability${route}`, {
