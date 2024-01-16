@@ -26,15 +26,14 @@ i {
 button {
   @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black border-gray-600 dark:border-gray-400
 }
-
+.light-border {
+  @apply border-gray-300 dark:border-gray-700
+}
 .button-secondary {
   @apply text-sm border-0 text-gray-600 dark:text-gray-400 hover:bg-inherit hover:underline hover:dark:text-gray-400
 }
 .plot {
-  @apply rounded-2xl overflow-hidden border
-}
-.visualization {
-  @apply bg-neutral-100 dark:bg-black rounded-2xl p-8 flex gap-7 flex-col xl:flex-row shadow-inner dark:border mt-1.5 justify-between
+  @apply rounded-2xl overflow-hidden border light-border
 }
 input {
   @apply dark:bg-slate-900 p-0.5 px-2 rounded-lg border

@@ -22,10 +22,5 @@ const news = [
     heading: 'V1.0',
     time: '2024-01-14',
     content: 'ProllyYes is out officially! Enjoy this free online probability distribution calculator / visualizer.'
-  },
-  {
-    heading: 'V0.1',
-    time: '2024-01-11',
-    content: 'Beta version.'
   }
 ]
