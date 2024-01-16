@@ -26,7 +26,7 @@ export default function CdfPlot({ pmf }) {
 
   }, [copied])
   useEffect(() => {
-    setResult(null)
+    setResult({ cdf: null, ppf: null })
   }, [trigger])
   useEffect(() => {
 
