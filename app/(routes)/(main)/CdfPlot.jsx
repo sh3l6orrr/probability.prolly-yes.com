@@ -1,11 +1,10 @@
-import { showCdf, showCdfFormula } from "./actions";
 import distriConfig from "./distrConfig";
 import { useProbabilityStore } from "./store";
 import { useEffect, useState } from "react";
 import { BlockMath, InlineMath } from 'react-katex'
 import { Vega } from "react-vega";
 import PlotSizeToggler from "./PlotSizeToggler";
-import { calcCdf, calcPpf } from "./actions";
+import { fetchProbability } from "./actions";
 
 export default function CdfPlot({ pmf }) {
   const { params, distr, trigger, setFailed } = useProbabilityStore()
@@ -26,6 +25,9 @@ export default function CdfPlot({ pmf }) {
     }
 
   }, [copied])
+  useEffect(() => {
+    setResult(null)
+  }, [trigger])
   useEffect(() => {
 
     let data = {
@@ -49,11 +51,11 @@ export default function CdfPlot({ pmf }) {
 
     async function update() {
       setLoading(true)
-      const cdf = await showCdf(data)
-      const formula = await showCdfFormula(data)
+      const cdf = await fetchProbability(data, '/cdf/plot')
+      const formula = await fetchProbability(data, '/cdf/formula')
       if (cdf) {
         setSpec(cdf)
-        setFormula(formula)
+        setFormula(formula.formula)
       }
       else setFailed(true)
       setLoading(false)
@@ -93,7 +95,7 @@ export default function CdfPlot({ pmf }) {
                 },
                 x: parseFloat(val.cdf)
               }
-              const res = await calcCdf(data)
+              const res = await fetchProbability(data, '/cdf/calc')
               if (res) setResult({ ...result, cdf: { x: val.cdf, y: res.val } })
             }}>
               <InlineMath math={pmf ? 'k = ' : 'x ='} />
@@ -111,7 +113,7 @@ export default function CdfPlot({ pmf }) {
                 },
                 x: parseFloat(val.ppf)
               }
-              const res = await calcPpf(data)
+              const res = await fetchProbability(data, '/ppf/calc')
               if (res) setResult({ ...result, ppf: { x: val.ppf, y: res.val } })
             }}>
               <InlineMath math={pmf ? 'F(k) = ' : 'F(x) = '} />

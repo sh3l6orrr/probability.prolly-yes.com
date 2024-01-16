@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useProbabilityStore } from "./store";
-import { calcPdf, calcPmf, showPdf, showPdfFormula, showPmf, showPmfFormula} from "./actions";
+import { fetchProbability } from "./actions";
 import { BlockMath, InlineMath } from 'react-katex'
 import distriConfig from "./distrConfig";
 import { Vega } from 'react-vega';
@@ -53,11 +53,11 @@ export default function PdfPlot({ pmf }) {
 
     async function update() {
       setLoading(true)
-      const pdf = pmf ? await showPmf(data) : await showPdf(data)
-      const formula = pmf ? await showPmfFormula(data) : await showPdfFormula(data) 
+      const pdf = pmf ? await fetchProbability(data, '/pmf/plot') : await fetchProbability(data, '/pdf/plot')
+      const formula = pmf ? await fetchProbability(data, '/pmf/formula') : await fetchProbability(data, '/pdf/formula')
       if (pdf) {
         setSpec(pdf)
-        setFormula(formula)
+        setFormula(formula.formula)
       }
       else setFailed(true)
       setLoading(false)
@@ -97,7 +97,7 @@ export default function PdfPlot({ pmf }) {
               },
               x: parseFloat(val)
             }
-            const res = pmf ? await calcPmf(data) : await calcPdf(data)
+            const res = pmf ? await fetchProbability(data, '/pmf/calc') : await fetchProbability(data, '/pdf/calc')
             if (res) setResult({ x: val, y: res.val })
           }}>
             <InlineMath math={pmf ? 'k = ' : 'x = '} />
