@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "ProllyYes News"
+  title: "News"
 }
 
 export default function Page() {
@@ -21,6 +21,6 @@ const news = [
   {
     heading: 'V1.0',
     time: '2024-01-14',
-    content: 'ProllyYes is out officially! Enjoy this free online probability distribution calculator / visualizer.'
+    content: 'ProllyYes/Probability is out officially! Enjoy this free online probability distribution calculator / visualizer.'
   }
 ]

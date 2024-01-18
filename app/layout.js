@@ -11,7 +11,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "ProllyYes",
-  "url": "https://probability.prolly-yes.com/"
+  "url": "https://probability.prolly-yes.com"
 }
 
 export default function RootLayout({ children }) {
