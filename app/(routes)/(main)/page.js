@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Probability Distribution Calculator",
-  description: "ProllyYes: Best online tools for probability and statistics.",
+  description: "Probability Distribution Calculator from ProllyYes",
 }
 
 import Stage from "./Stage"
@@ -27,7 +27,7 @@ export default function Home() {
       </div>
       <div className="grow" />
       <div className="">
-        ProllyYes @ 2024 <div className="w-2 inline-block"/><h1 className="text-sm dark:text-gray-400 text-gray-600 inline">Best free online tool for calculation and visualization of probability distributions and statistics. </h1>
+        ProllyYes @ 2024 <div className="w-2 inline-block"/><h1 className="text-sm dark:text-gray-400 text-gray-600 inline">An online tool for calculation and visualization of probability distributions and statistics. </h1>
       </div>
     </div>
 

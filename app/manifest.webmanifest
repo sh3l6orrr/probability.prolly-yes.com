@@ -1,7 +1,7 @@
 {
-  "name": "ProllyYes",
-  "short_name": "ProllyYes",
-  "description": "ProllyYes: Probability Distribution Calculator & Visualization",
+  "name": "Probability Distribution Calculator",
+  "short_name": "Probability Distribution Calculator",
+  "description": "Probability Distribution Calculator from ProllyYes",
   "start_url": "/",
   "icons": [
     {

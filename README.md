@@ -1,6 +1,4 @@
-# ProllyYes
-
-Best online tools for probability and statistics.
+# Probability Distribution Calculator
 
 ### TODO
 - Browser remember previous parameters when changing distribution
