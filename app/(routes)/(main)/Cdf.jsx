@@ -38,27 +38,26 @@ export default function CdfPlot({ pmf }) {
       },
       size: plotSize
     }
-    if (!pmf) {
-      let sympyParams = {}
-      Object.keys(params).forEach((key) => {
-        const newKey = distriConfig[distr]['sympy']['params'][key] || key;
-        sympyParams[newKey] = params[key];
-      })
-      data['sympy'] = {
-        name: distriConfig[distr]['sympy']['name'],
-        params: sympyParams
-      }
+
+    let sympyParams = {}
+    Object.keys(params).forEach((key) => {
+      const newKey = distriConfig[distr]['sympy']['params'][key] || key;
+      sympyParams[newKey] = params[key];
+    })
+    data['sympy'] = {
+      name: distriConfig[distr]['sympy']['name'],
+      params: sympyParams
     }
+
 
     async function update() {
       setLoading(true)
-      const cdf = await fetchProbability(data, '/cdf/plot')
+      const plot = await fetchProbability(data, '/cdf/plot')
       const formula = await fetchProbability(data, '/cdf/formula/number')
-      if (cdf) {
-        setSpec(cdf)
-        setFormula(formula.formula)
-      }
+      if (plot) setSpec(plot)
       else setFailed(true)
+      if (formula && formula.formula !== 'timeout' && formula.formula.length < 250) setFormula(`F(${pmf ? 'k' : 'x'}) = ${formula.formula}`)
+      else setFormula('Unable\\ to\\ display')
       setLoading(false)
     }
     update()
@@ -69,10 +68,10 @@ export default function CdfPlot({ pmf }) {
 
   return <StageView title='Cumulative Distribution Function (CDF)' loading={loading}>
     <div className="flex flex-col gap-3">
-      {!pmf && <div className="flex gap-5 items-center flex-wrap">
+      <div className="flex gap-5 items-center flex-wrap">
         <h4>Formula</h4>
         <div className="overflow-scroll max-w-96">
-          <BlockMath math={formula.length < 200 && formula !== 'timeout' ? `F(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
+          <BlockMath math={formula} />
         </div>
 
         <button className='button-secondary' onClick={async () => {
@@ -80,7 +79,7 @@ export default function CdfPlot({ pmf }) {
           const textToCopy = formula
           await navigator.clipboard.writeText(textToCopy)
         }}> {copied ? '✅' : 'Copy'} </button>
-      </div>}
+      </div>
       <div className="flex items-center gap-5 flex-wrap">
         <h4>Evaluate</h4>
         <div className="flex flex-col gap-1">

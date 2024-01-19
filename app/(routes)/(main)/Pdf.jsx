@@ -54,13 +54,12 @@ export default function PdfPlot({ pmf }) {
 
     async function update() {
       setLoading(true)
-      const pdf = pmf ? await fetchProbability(data, '/pmf/plot') : await fetchProbability(data, '/pdf/plot')
+      const plot = pmf ? await fetchProbability(data, '/pmf/plot') : await fetchProbability(data, '/pdf/plot')
       const formula = pmf ? await fetchProbability(data, '/pmf/formula/number') : await fetchProbability(data, '/pdf/formula/number')
-      if (pdf) {
-        setSpec(pdf)
-        setFormula(formula.formula)
-      }
+      if (plot) setSpec(plot)
       else setFailed(true)
+      if (formula && formula.formula !== 'timeout' && formula.formula.length < 250) setFormula(`f(${pmf ? 'k' : 'x'}) = ${formula.formula}`)
+      else setFormula('Unable\\ to\\ display')
       setLoading(false)
     }
     update()
@@ -73,7 +72,7 @@ export default function PdfPlot({ pmf }) {
       <div className="flex items-center gap-x-5 flex-wrap">
         <h4>Formula</h4>
         <div className="overflow-y-scroll max-w-96">
-          <BlockMath math={formula.length < 250 && formula !== 'timeout' ? `f(${pmf ? 'k' : 'x'}) = ${formula}` : 'Unable\\ to\\ display'} />
+          <BlockMath math={formula} />
         </div>
 
         <button className='button-secondary' onClick={async () => {
