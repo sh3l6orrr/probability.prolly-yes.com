@@ -53,7 +53,7 @@ export default function CdfPlot({ pmf }) {
     async function update() {
       setLoading(true)
       const plot = await fetchProbability(data, '/cdf/plot')
-      const formula = await fetchProbability(data, '/cdf/formula/number')
+      const formula = await fetchProbability(data, '/cdf/formula')
       if (plot) setSpec(plot)
       else setFailed(true)
       if (formula && formula.formula !== 'timeout' && formula.formula.length < 250) setFormula(`F(${pmf ? 'k' : 'x'}) = ${formula.formula}`)

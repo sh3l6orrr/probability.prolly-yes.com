@@ -6,8 +6,8 @@ import distriConfig from "./distrConfig";
 import { BlockMath } from "react-katex";
 
 export default function Meta({ pmf }) {
-  const { params, distr, trigger } = useProbabilityStore()
-  const [formulas, setFormulas] = useState({ pdf: '', cdf: '' })
+  const { params, distr, trigger, setFailed } = useProbabilityStore()
+  const [formulas, setFormulas] = useState({ pdf: '', cdf: '', pmf: '', expectation: '', variance: '' })
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -21,16 +21,14 @@ export default function Meta({ pmf }) {
       name: distriConfig[distr]['sympy']['name'],
       params: sympyParams
     }
+    data['type'] = pmf ? 'discrete' : 'continuous'
     async function update() {
       setLoading(true)
 
-      const pdf = await fetchProbability(data, '/pdf/formula/meta')
-      const cdf = await fetchProbability(data, '/cdf/formula/meta')
-      if (pdf && pdf.formula !== 'timeout' && pdf.formula.length < 250) setFormulas({ ...formulas, pdf: `f(${pmf ? 'k' : 'x'}) = ${pdf.formula}` })
-      else setFormulas({ ...formulas, pdf: 'Unable\\ to\\ display' })
-
-      if (cdf && cdf.formula !== 'timeout' && cdf.formula.length < 250) setFormulas({ ...formulas, cdf: `F(${pmf ? 'k' : 'x'}) = ${cdf.formula}` })
-      else setFormulas({ ...formulas, cdf: 'Unable\\ to\\ display' })
+      const meta = await fetchProbability(data, '/meta')
+      alert(JSON.stringify(meta))
+      if (meta) setFormulas(meta)
+      else setFailed(true)
 
       setLoading(false)
     }
@@ -40,9 +38,17 @@ export default function Meta({ pmf }) {
   return <>
     <StageView title='Meta' loading={loading}>
       <div className="flex flex-col gap-5">
+      <div className="flex items-center gap-x-5 flex-wrap">
+          <h3>Expectation</h3>
+          <BlockMath math={formulas.expectation} />
+        </div>
+        <div className="flex items-center gap-x-5 flex-wrap">
+          <h3>Variance</h3>
+          <BlockMath math={formulas.variance} />
+        </div>
         <div className="flex items-center gap-x-5 flex-wrap">
           <h3>{pmf ? 'PMF' : 'PDF'}</h3>
-          <BlockMath math={formulas.pdf} />
+          <BlockMath math={pmf ? formulas.pmf : formulas.pdf} />
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
           <h3>CDF</h3>

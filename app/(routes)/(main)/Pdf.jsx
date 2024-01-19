@@ -55,7 +55,7 @@ export default function PdfPlot({ pmf }) {
     async function update() {
       setLoading(true)
       const plot = pmf ? await fetchProbability(data, '/pmf/plot') : await fetchProbability(data, '/pdf/plot')
-      const formula = pmf ? await fetchProbability(data, '/pmf/formula/number') : await fetchProbability(data, '/pdf/formula/number')
+      const formula = pmf ? await fetchProbability(data, '/pmf/formula') : await fetchProbability(data, '/pdf/formula')
       if (plot) setSpec(plot)
       else setFailed(true)
       if (formula && formula.formula !== 'timeout' && formula.formula.length < 250) setFormula(`f(${pmf ? 'k' : 'x'}) = ${formula.formula}`)
