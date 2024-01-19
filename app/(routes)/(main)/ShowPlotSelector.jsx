@@ -9,9 +9,11 @@ export default function ShowPlotSelector() {
     <div className="h-3"></div>
     <div className="flex justify-between">
       <div className="flex flex-wrap gap-3">
-        {/* <button className={showPlot.includes('meta') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('meta')}>
+        
+        <button className={showPlot.includes('meta') ? 'bg-blue-200 dark:text-black relative' : 'relative'} onClick={() => toggleShowPlot('meta')}>
           Meta
-        </button> */}
+          <div className="absolute top-[-1rem] right-[-1rem] dark:bg-black bg-white rounded-lg border p-1 text-xs">Beta</div>
+        </button>
         <button className={showPlot.includes('moments') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('moments')}>
           Attributes
         </button>

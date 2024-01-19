@@ -48,6 +48,7 @@ export default function CdfPlot({ pmf }) {
       name: distriConfig[distr]['sympy']['name'],
       params: sympyParams
     }
+    data['type'] = pmf ? 'discrete' : 'continuous'
 
 
     async function update() {
@@ -56,7 +57,7 @@ export default function CdfPlot({ pmf }) {
       const formula = await fetchProbability(data, '/cdf/formula')
       if (plot) setSpec(plot)
       else setFailed(true)
-      if (formula && formula.formula !== 'timeout' && formula.formula.length < 250) setFormula(`F(${pmf ? 'k' : 'x'}) = ${formula.formula}`)
+      if (formula && formula.formula.length < 250) setFormula(formula.formula)
       else setFormula('Unable\\ to\\ display')
       setLoading(false)
     }

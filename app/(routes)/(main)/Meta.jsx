@@ -26,9 +26,8 @@ export default function Meta({ pmf }) {
       setLoading(true)
 
       const meta = await fetchProbability(data, '/meta')
-      alert(JSON.stringify(meta))
       if (meta) setFormulas(meta)
-      else setFailed(true)
+      else setFormulas({ pdf: '', cdf: '', pmf: '', expectation: '', variance: '' })
 
       setLoading(false)
     }
