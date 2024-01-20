@@ -27,7 +27,7 @@ export default function Meta({ pmf }) {
 
       const meta = await fetchProbability(data, '/meta')
       if (meta) setFormulas(meta)
-      else setFormulas({ pdf: '', cdf: '', pmf: '', expectation: '', variance: '' })
+      else setFailed(true)
 
       setLoading(false)
     }
@@ -37,21 +37,30 @@ export default function Meta({ pmf }) {
   return <>
     <StageView title='Meta' loading={loading}>
       <div className="flex flex-col gap-5">
-      <div className="flex items-center gap-x-5 flex-wrap">
+        <div className="flex items-center gap-x-5 flex-wrap">
           <h3>Expectation</h3>
-          <BlockMath math={formulas.expectation} />
+          <div className="overflow-scroll max-w-2xl">
+            <BlockMath math={formulas.expectation} />
+          </div>
+
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
           <h3>Variance</h3>
-          <BlockMath math={formulas.variance} />
+          <div className="overflow-scroll max-w-2xl">
+            <BlockMath math={formulas.variance} />
+          </div>
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
           <h3>{pmf ? 'PMF' : 'PDF'}</h3>
-          <BlockMath math={pmf ? formulas.pmf : formulas.pdf} />
+          <div className="overflow-scroll max-w-2xl">
+            <BlockMath math={pmf ? formulas.pmf : formulas.pdf} />
+          </div>
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
           <h3>CDF</h3>
-          <BlockMath math={formulas.cdf} />
+          <div className="overflow-scroll max-w-2xl">
+            <BlockMath math={formulas.cdf} />
+          </div>
         </div>
       </div>
     </StageView>

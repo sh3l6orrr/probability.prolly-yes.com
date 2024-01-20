@@ -58,8 +58,8 @@ export default function PdfPlot({ pmf }) {
       const formula = pmf ? await fetchProbability(data, '/pmf/formula') : await fetchProbability(data, '/pdf/formula')
       if (plot) setSpec(plot)
       else setFailed(true)
-      if (formula && formula.formula.length < 250) setFormula(formula.formula)
-      else setFormula('Unable\\ to\\ display')
+      if (formula) setFormula(formula.formula)
+      else setFailed(true)
       setLoading(false)
     }
     update()
