@@ -33,7 +33,7 @@ export default function Moments() {
   }, [trigger])
 
   return <StageView title='Attributes' loading={loading}>
-    <div className="flex flex-col gap-5 min-h-20">
+    <div className="flex flex-col gap-5">
       <div className="flex flex-wrap gap-x-8 gap-y-3 items-center">
         <h4>Support</h4>
         <InlineMath math={support.replace(/inf/g, '\\infty')} />

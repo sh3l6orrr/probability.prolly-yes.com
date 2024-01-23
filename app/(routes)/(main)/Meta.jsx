@@ -36,7 +36,7 @@ export default function Meta({ pmf }) {
   }, [trigger])
   return <>
     <StageView title='Meta' loading={loading}>
-      <div className="flex gap-x-16 flex-wrap items-center min-h-20">
+      <div className="flex gap-x-16 flex-wrap items-center">
         <div className="flex items-center gap-x-5 flex-wrap">
           <h4>Expectation</h4>
           <div className="overflow-scroll max-w-2xl">
