@@ -31,7 +31,6 @@ export default function Layout({ children }) {
       <div className="w-8" />
     </header>
     <div>
-      <div className="h-12" />
       {children}
     </div>
   </>
