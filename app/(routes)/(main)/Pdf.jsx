@@ -68,7 +68,7 @@ export default function PdfPlot({ pmf }) {
 
 
   return <StageView title={pmf ? 'Probability Mass Function (PMF)' : 'Probability Density Function (PDF)'} loading={loading}>
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 min-h-96">
       <div className="flex items-center gap-x-5 flex-wrap">
         <h4>Formula</h4>
         <div className="overflow-y-scroll max-w-96">

@@ -36,28 +36,28 @@ export default function Meta({ pmf }) {
   }, [trigger])
   return <>
     <StageView title='Meta' loading={loading}>
-      <div className="flex flex-col gap-5">
+      <div className="flex gap-x-16 flex-wrap items-center min-h-20">
         <div className="flex items-center gap-x-5 flex-wrap">
-          <h3>Expectation</h3>
+          <h4>Expectation</h4>
           <div className="overflow-scroll max-w-2xl">
             <BlockMath math={formulas.expectation} />
           </div>
 
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
-          <h3>Variance</h3>
+          <h4>Variance</h4>
           <div className="overflow-scroll max-w-2xl">
             <BlockMath math={formulas.variance} />
           </div>
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
-          <h3>{pmf ? 'PMF' : 'PDF'}</h3>
+          <h4>{pmf ? 'PMF' : 'PDF'}</h4>
           <div className="overflow-scroll max-w-2xl">
             <BlockMath math={pmf ? formulas.pmf : formulas.pdf} />
           </div>
         </div>
         <div className="flex items-center gap-x-5 flex-wrap">
-          <h3>CDF</h3>
+          <h4>CDF</h4>
           <div className="overflow-scroll max-w-2xl">
             <BlockMath math={formulas.cdf} />
           </div>

@@ -4,7 +4,7 @@ export const useProbabilityStore = create((set) => ({
   distr: 'norm',
   type: 'continuous',
   params: { loc: 0, scale: 1 },
-  showPlot: ['meta', 'attributes', 'pdf'],
+  showPlot: ['attributes', 'pdf'],
   trigger: false,
   falied: false,
   setFailed: (newVal) => set(() => ({ failed: newVal })),

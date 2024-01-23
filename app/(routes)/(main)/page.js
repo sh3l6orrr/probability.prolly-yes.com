@@ -15,11 +15,10 @@ export default function Home() {
       </aside>
     </div>
     <div className="px-8 py-4 md:ml-96 flex flex-col gap-4 mt-40 md:mt-0">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 min-h-screen">
         <Stage />
       </div>
-      <div className="grow" />
-      <div className="">
+      <div>
         ProllyYes @ 2024 <div className="w-2 inline-block"/><h1 className="text-sm dark:text-gray-400 text-gray-600 inline">An online tool for calculation and visualization of probability distributions. </h1>
       </div>
     </div>
