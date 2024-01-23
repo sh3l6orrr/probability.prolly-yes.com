@@ -23,6 +23,9 @@ h4 {
 i {
   @apply text-gray-600 dark:text-gray-400
 }
+svg {
+  @apply stroke-black dark:stroke-white
+}
 button {
   @apply border p-0.5 px-2 rounded hover:bg-blue-300 hover:dark:text-black border-gray-600 dark:border-gray-400
 }
