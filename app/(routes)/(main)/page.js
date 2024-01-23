@@ -18,6 +18,7 @@ export default function Home() {
         <div className="md:h-10 h-48" />
         <Stage />
       </div>
+      <div className="h-8 md:hidden" />
       <hr />
       <main>
         <div className="h-8" />
