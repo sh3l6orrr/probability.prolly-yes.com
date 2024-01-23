@@ -8,13 +8,13 @@ import Settings from "./Settings"
 export default function Home() {
   return <>
     <div className="bg-white dark:bg-black flex flex-col
-    w-screen fixed md:w-96 md:h-screen md:border-r md:overflow-scroll md:top-0 z-10">
+    w-screen fixed md:w-96 md:h-screen md:border-r md:overflow-scroll md:top-0 z-30">
       <aside>
         <div className="md:h-12" />
         <Settings />
       </aside>
     </div>
-    <div className="px-8 py-4 md:ml-96 flex flex-col gap-4 md:mt-0 mt-24">
+    <div className="px-8 py-4 md:ml-96 flex flex-col gap-4 mt-24 md:mt-0">
       <div className="flex flex-col gap-4">
         <Stage />
       </div>

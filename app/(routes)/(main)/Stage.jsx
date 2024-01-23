@@ -12,7 +12,7 @@ export default function Stage() {
 
   return <>
     {showPlot.includes('meta') && <div style={{ order: showPlot.indexOf('meta') + 1 }}><Meta pmf={type === 'discrete'}/></div>}
-    {showPlot.includes('moments') && <div style={{ order: showPlot.indexOf('moments') + 1 }}> <Attributes /></div>}
+    {showPlot.includes('attributes') && <div style={{ order: showPlot.indexOf('attributes') + 1 }}> <Attributes /></div>}
     {showPlot.includes('pdf') && <div style={{ order: showPlot.indexOf('pdf') + 1 }}><Pdf pmf={type === 'discrete'} /></div>}
     {showPlot.includes('cdf') && <div style={{ order: showPlot.indexOf('cdf') + 1 }}><Cdf pmf={type === 'discrete'} /></div>}
     {showPlot.includes('sampling') && <div style={{ order: showPlot.indexOf('sampling') + 1 }}><Sampling /></div>}

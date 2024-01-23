@@ -10,10 +10,10 @@ export default function ShowPlotSelector() {
     <div className="flex justify-between">
       <div className="flex flex-wrap gap-3">
         
-        <button className={showPlot.includes('meta') ? 'bg-blue-200 dark:text-black relative' : 'relative'} onClick={() => toggleShowPlot('meta')}>
+        <button className={showPlot.includes('meta') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('meta')}>
           Meta
         </button>
-        <button className={showPlot.includes('moments') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('moments')}>
+        <button className={showPlot.includes('attributes') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('attributes')}>
           Attributes
         </button>
         <button className={showPlot.includes('pdf') ? 'bg-blue-200 dark:text-black' : ''} onClick={() => toggleShowPlot('pdf')}>

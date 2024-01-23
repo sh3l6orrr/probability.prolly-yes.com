@@ -22,7 +22,7 @@ export default function Settings() {
       <div className="relative">
         <Panel />
         <div className="absolute right-8 top-7">
-          <button onClick={() => setShowSettings(showSettings ? false : true)}>⚙︎ Settings</button>
+          <button onClick={() => setShowSettings(showSettings ? false : true)}>⚙︎ Configure</button>
         </div>
       </div>
       {showSettings && <div>
