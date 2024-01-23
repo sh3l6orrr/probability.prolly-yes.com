@@ -14,7 +14,7 @@ export default function Home() {
         <Settings />
       </aside>
     </div>
-    <div className="px-8 py-4 md:ml-96 flex flex-col gap-4 mt-24 md:mt-0">
+    <div className="px-8 py-4 md:ml-96 flex flex-col gap-4 mt-40 md:mt-0">
       <div className="flex flex-col gap-4">
         <Stage />
       </div>

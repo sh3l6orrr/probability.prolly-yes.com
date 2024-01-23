@@ -7,7 +7,7 @@ import Panel from "./Panel"
 import { useState, useRef, useEffect } from "react"
 
 export default function Settings() {
-  const [showSettings, setShowSettings] = useState(false)
+  const [showSettings, setShowSettings] = useState(null)
   const ref = useRef(null)
   useEffect(() => {
     const handleClick = (e) => {
@@ -19,17 +19,19 @@ export default function Settings() {
 
   return <div>
     <div className="md:hidden" ref={ref}>
-      <div className="relative">
-        <Panel />
-        <div className="absolute right-8 top-7">
-          <button onClick={() => setShowSettings(showSettings ? false : true)}>⚙︎ Configure</button>
-        </div>
+
+      <Panel />
+      <div className="flex border-b px-8 py-4 flex-wrap gap-3 items-center">
+        <span>Configure</span>
+        <button className={showSettings === 'distribution' ? 'bg-blue-200 dark:text-black' : ''} onClick={() => setShowSettings(showSettings === 'distribution' ? null : 'distribution')}>Distribution</button>
+        <button className={showSettings === 'parameters' ? 'bg-blue-200 dark:text-black' : ''} onClick={() => setShowSettings(showSettings === 'parameters' ? null : 'parameters')}>Parameters</button>
+        <button className={showSettings === 'utilities' ? 'bg-blue-200 dark:text-black' : ''} onClick={() => setShowSettings(showSettings === 'utilities' ? null : 'utilities')}>Show Utilities</button>
       </div>
-      {showSettings && <div>
-        <DistributionSelector />
-        <ParametersSelector />
-        <ShowUtilities />
-      </div>}
+      <div>
+        {showSettings === 'distribution' && <DistributionSelector />}
+        {showSettings === 'parameters' && <ParametersSelector />}
+        {showSettings === 'utilities' && <ShowUtilities />}
+      </div>
     </div>
 
     <div className="hidden md:block">
