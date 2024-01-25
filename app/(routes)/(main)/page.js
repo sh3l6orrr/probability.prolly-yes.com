@@ -28,27 +28,68 @@ export default function Home() {
       <h2>What are random variables?</h2>
       <div className="h-6" />
 
-      <p>Informally, random variables, usually denoted by a capital say <InlineMath math='X' />, takes a random quantity each time it is evaluated. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f(x)' />. Depending on the range of <InlineMath math='X' />, there are two cases:
+      <p>Informally, random variables takes a random quantity each time it is evaluated. It is usually denoted by a capital, say <InlineMath math='X' />. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f' />. In other words, <InlineMath math='f(x) = P(X = x)' />. Depending on the range of <InlineMath math='X' />, there are two cases:
         <ul className="list-disc my-3 ml-4">
           <li>
-            If the range is countable, <InlineMath math='f' /> is called the probability density function (PDF), defined by <InlineMath math='f(x) = P(X = x)' />, satisfying <InlineMath math='\int_{x\in S} f(x) dx = 1' />, and <InlineMath math='X' /> is called a continuous random variable.
+            If the range is countable: <InlineMath math='f(x)' /> is called the probability density function (PDF). It satisfies <InlineMath math='\int_{x\in R_X} f(x) dx = 1' />. <InlineMath math='X' /> is called a continuous random variable.
           </li>
           <li>
-            If the range is uncountable, <InlineMath math='f' /> is called the probability mass function (PMF), defined by <InlineMath math='f(k) = P(X = k)' />, satisfying <InlineMath math='\sum_{x\in S} f(k)= 1' />, and <InlineMath math='X' /> is called a discrete random variable.
+            If the range is uncountable: <InlineMath math='f(k)' /> is called the probability mass function (PMF). It satisfies <InlineMath math='\sum_{x\in R_X} f(k)= 1' />. <InlineMath math='X' /> is called a discrete random variable.
           </li>
-        </ul> where <InlineMath math='S' /> is the range, or &quot;support&quot; of <InlineMath math='X' />. The PDF or PMF uniquely identifies a random variable. Note that the formal definition of random variables in probability theory involves measure theory and is a little more complex.
-        <div className="h-12" />
-
-        <h2>What are probability distributions?</h2>
-        <div className="h-6" />
-
-        A random variable is said to follow a certain probability distribution if its PDF or PMF is in a specific form. For example, continuous ramdom variables with PDFs in the form of <InlineMath math='f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x - \mu}{\sigma})}' /> are said to have a normal distribution of <InlineMath math='\mathcal{N}(\mu, \sigma)' />. Discrete ramdom varibales with a PMF in the form of <InlineMath math='f(k) = p^k(1-p)^{n-k} \binom{n}{k}' /> are said to have a binomial distribution of <InlineMath math='B(n, k)' />. Both the normal distribution and the binomial distribution are probability distributions. Other popular probability distributions include chi-squared distribution, poisson distribution, weibull distribution, etc. Their importance is embodied many fields of science (even outside of maths or statistics), including physics, biology, sociology, and so on.
+        </ul> The <InlineMath math='R_X' /> in the formulas above is the range or &quot;support&quot; of <InlineMath math='X' />. The PDF or PMF uniquely identifies a random variable. Note that the formal definition of random variables in probability theory is a little more complex and involves measure theory.
       </p>
       <div className="h-12" />
+
+      <h2>What are probability distributions?</h2>
+      <div className="h-6" />
+      <p>
+        A random variable is said to follow a certain probability distribution if its PDF or PMF is in a specific form. For example:
+        <ul className="list-disc my-3 ml-4">
+          <li>
+            <InlineMath math='f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x - \mu}{\sigma})}' /> identifies a normal distribution of <InlineMath math='\mathcal{N}(\mu, \sigma)' />. It is a continuous random variable.
+          </li>
+          <li>
+            <InlineMath math='f(k) = p^k(1-p)^{n-k} \binom{n}{k}' /> identifies a binomial distribution of <InlineMath math='B(n, k)' />. It is a discrete random variable.
+          </li>
+        </ul>
+        Both the normal distribution and the binomial distribution are probability distributions. Other popular probability distributions include chi-squared distribution, poisson distribution, weibull distribution, etc. Probability distributions are foundational to probability theory and statistics. Their importance is also embodied many fields of science including physics, biology, sociology, etc.
+      </p>
+      <div className="h-12" />
+
+      <h2>What attributes do probability distributions have?</h2>
+      <div className="h-6" />
+      Let&apos;s say <InlineMath math='X' /> follows some probability distribution. Below are some common attributes of <InlineMath math='X' />.
+      <p>
+        <ul className="list-disc my-3 ml-4">
+        <li>
+            Support <InlineMath math='R_X' />: The set of possible values of <InlineMath math='X' />.
+          </li>
+          <li>
+            Expected value <InlineMath math='E(X)' />: The average of <InlineMath math='X' />.
+          </li>
+          <li>
+            Variance <InlineMath math='Var(X)' />: It tells you how much does <InlineMath math='X' /> vary.
+          </li>
+          <li>
+            Skewness <InlineMath math='Skew(X)' />: It tells you how skewed is the distribution of <InlineMath math='X' />.
+          </li>
+          <li>
+            Exterior kurtosis <InlineMath math='Kurt(X)' />: A measure of the tailedness of the distribution of <InlineMath math='X' />.
+          </li>
+          <li>
+            PDF / PMF: Gives the probability that <InlineMath math='X' /> takes a specific value.
+          </li>
+          <li>
+            CDF: Gives the probability that <InlineMath math='X' /> is less than a specific value.
+          </li>
+        </ul>
+      </p>
+      <div className="h-12" />
+
       <h2>What does this calculator do?</h2>
       <div className="h-6" />
       <p>
-        This online calculator allows you to perform calculations on probability distributions. To start, choose from a wide range of commonly used probability distributions, including continuous or discrete ones, and toggle the parameters. After that, you can select the utilites of interest to help you understand more about the distribution. The description of all the utilites is given below.
+        This online calculator allows you to perform calculations on probability distributions. To start, choose from a wide range of commonly used probability distributions. Then, you can choose to toggle the parameters. After that, you can select the utilites of interest to help you understand more about the distribution. The description of all the utilites is given below.
         <ul className="list-disc my-3 ml-4">
           <li>
             Meta: Provides general information of the probability distribution without looking at the parameters.
