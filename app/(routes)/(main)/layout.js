@@ -14,7 +14,7 @@ export default function Layout({ children }) {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [ref, setShowDropdown])
 
-  return <>
+  return <div className="min-h-screen flex flex-col">
     <header className="fixed top-0 left-0 w-screen bg-white dark:bg-black h-12 flex items-center border-b z-50">
       <div className="w-8" />
       <span className="text-xl"><a href='https://www.prolly-yes.com'>ProllyYes</a> / <Link href='/'>Probability</Link></span>
@@ -33,6 +33,12 @@ export default function Layout({ children }) {
     <div>
       {children}
     </div>
-  </>
+    <div className="grow" />
+    <footer className="md:px-12 px-8 py-6">ProllyYes @ 2024 <div className="w-2 inline-block" />
+      <span className="text-sm dark:text-gray-400 text-gray-600 inline">
+        An online tool for calculation and visualization of probability distributions.
+      </span>
+    </footer>
+  </div>
 
 }

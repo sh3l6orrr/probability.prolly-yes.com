@@ -4,8 +4,8 @@ export const metadata = {
 
 export default function Page() {
   return <>
-    <div className="h-12"></div>
-    <main className="p-8 gap-4 flex flex-col">
+    <div className="h-8" />
+    <main className="md:p-12 p-8 gap-4 flex flex-col">
       <h1>Online Probability Distribution Calculator</h1>
       <p>The project is built on top of <a className='text-blue-500' href='https://scipy.org'>Scipy</a>, <a className='text-blue-500' href='https://sympy.org'>Sympy</a>,
         and the visualization library <a className='text-blue-500' href='https://altair-viz.github.io'>Vega-Altair</a>. This project is part of the <a className='text-blue-500' href='https://www.prolly-yes.com'>ProllyYes toolset</a>.
