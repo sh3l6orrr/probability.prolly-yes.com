@@ -28,15 +28,15 @@ export default function Home() {
       <h2>What are random variables?</h2>
       <div className="h-6" />
 
-      <p>In probability theory, we define a concept called &quot;random variable&quot;, usually denoted by a capital, say <InlineMath math='X' />.  <InlineMath math='X' /> is a random quantity that takes a different value each time it is evaluated. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f' />. In general, there are two cases:
+      <p>Informally, random variables, usually denoted by a capital say <InlineMath math='X' />, takes a random quantity each time it is evaluated. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f(x)' />. Depending on the range of <InlineMath math='X' />, there are two cases:
         <ul className="list-disc my-3 ml-4">
           <li>
-            If <InlineMath math='f' /> is continuous, it is called the probability density function (PDF), defined by <InlineMath math='f(x) = P(X = x)' />, satisfying <InlineMath math='\int_{x\in S} f(x) dx = 1' />, and <InlineMath math='X' /> is called a continuous random variable.
+            If the range is countable, <InlineMath math='f' /> is called the probability density function (PDF), defined by <InlineMath math='f(x) = P(X = x)' />, satisfying <InlineMath math='\int_{x\in S} f(x) dx = 1' />, and <InlineMath math='X' /> is called a continuous random variable.
           </li>
           <li>
-            If <InlineMath math='f' /> takes discrete values, it is called the probability mass function (PMF), defined by <InlineMath math='f(k) = P(X = k)' />, satisfying <InlineMath math='\sum_{x\in S} f(k)= 1' />, and <InlineMath math='X' /> is called a discrete random variable.
+            If the range is uncountable, <InlineMath math='f' /> is called the probability mass function (PMF), defined by <InlineMath math='f(k) = P(X = k)' />, satisfying <InlineMath math='\sum_{x\in S} f(k)= 1' />, and <InlineMath math='X' /> is called a discrete random variable.
           </li>
-        </ul> where <InlineMath math='S' /> is the domain of the function, or &quot;support&quot; of the random variable. The PDF or PMF uniquely identifies a random variable.
+        </ul> where <InlineMath math='S' /> is the range, or &quot;support&quot; of <InlineMath math='X' />. The PDF or PMF uniquely identifies a random variable. Note that the formal definition of random variables in probability theory involves measure theory and is a little more complex.
         <div className="h-12" />
 
         <h2>What are probability distributions?</h2>
