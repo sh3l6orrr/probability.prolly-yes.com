@@ -28,7 +28,7 @@ export default function Home() {
       <h2>What are random variables?</h2>
       <div className="h-6" />
 
-      <p>Informally, random variables takes a random quantity each time it is evaluated. It is usually denoted by a capital, say <InlineMath math='X' />. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f' />. In other words, <InlineMath math='f(x) = P(X = x)' />. Depending on the range of <InlineMath math='X' />, there are two cases:
+      <p>Random variables takes random values described by a function. It is usually denoted by a capital, say <InlineMath math='X' />. The probability that <InlineMath math='X' /> takes a specific value <InlineMath math='x' /> is given by a function <InlineMath math='f' />. In other words, <InlineMath math='f(x) = P(X = x)' />. Depending on the range of <InlineMath math='X' />, there are two cases:
         <ul className="list-disc my-3 ml-4">
           <li>
             If the range is countable: <InlineMath math='f(x)' /> is called the probability density function (PDF). It satisfies <InlineMath math='\int_{x\in R_X} f(x) dx = 1' />. <InlineMath math='X' /> is called a continuous random variable.
@@ -52,7 +52,7 @@ export default function Home() {
             <InlineMath math='f(k) = p^k(1-p)^{n-k} \binom{n}{k}' /> identifies a binomial distribution of <InlineMath math='B(n, k)' />. It is a discrete random variable.
           </li>
         </ul>
-        Both the normal distribution and the binomial distribution are probability distributions. Other popular probability distributions include chi-squared distribution, poisson distribution, weibull distribution, etc. Probability distributions are foundational to probability theory and statistics. Their importance is also embodied many fields of science including physics, biology, sociology, etc.
+        Both the normal distribution and the binomial distribution are probability distributions. Other popular probability distributions include chi-squared distribution, poisson distribution, weibull distribution, etc. Probability distributions are foundational to probability theory and statistics. Their importance is also embodied in many fields of science including physics, biology, sociology, etc.
       </p>
       <div className="h-12" />
 
